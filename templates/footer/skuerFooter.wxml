@@ -1,0 +1,22 @@
+<template name="skuerFooter">
+  <view class="footer-wrap">
+    <view class="footer-item {{listSelectedCls}}">
+      <navigator open-type="redirect" url="/pages/skuerList/skuerList" hover-class="none">
+        <view class="nav-icon nav-icon-req"></view>
+        <view class="nav-text">我的项目</view>
+      </navigator>
+    </view>   
+    <view class="footer-item">
+      <navigator open-type="redirect" url="/pages/skuerMatch/skuerMatch" hover-class="none">
+        <view class="nav-icon-pub nav-icon-match"></view>
+        <view class="nav-text-pub">抢单</view>
+      </navigator>
+    </view>
+    <view class="footer-item {{centerSelectedCls}}">
+      <navigator open-type="redirect" url="/pages/skuerCenter/skuerCenter" hover-class="none">
+       <view class="nav-icon nav-icon-per"></view>
+        <view class="nav-text">个人中心</view>
+      </navigator>
+    </view> 
+  </view>
+</template>

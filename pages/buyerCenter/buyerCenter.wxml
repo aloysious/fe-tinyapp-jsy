@@ -1,0 +1,61 @@
+<!--pages/buyerCenter/buyerCenter.wxml-->
+<view class="container">
+
+  <view class="bc-info-wrap" bindtap="onTapBuyerAuth">
+    <image src="{{avatar}}"></image>
+    
+    <view wx:if="{{isAuthorized}}" class="bc-info-middle">
+      <view class="bc-info-name">{{name}}<text>采购客户</text></view>
+      <view class="bc-info-phone">{{phone}}</view>
+      <view class="bc-info-company">{{company}}</view>
+    </view>
+    <view wx:else class="bc-info-middle">
+      <view class="bc-info-name">{{name}}<text>采购客户</text></view>
+      <view class="bc-info-tips">您还未进行实名绑定</view>
+    </view>
+
+    <view class="bc-info-right">
+      <view wx:if="{{!isAuthorized}}" class="bc-info-authtext">实名绑定</view>
+      <view wx:else class="bc-info-authtext" style="opacity:0;">实名绑定</view>
+      <view class="bc-info-arrow"></view>
+    </view>
+  </view>
+
+  <view class="bc-func-wrap">
+    <view class="bc-item bc-follow" bindtap="onToBuyerFollow">
+      <view class="bc-item-left bc-follow-label">
+        <view class="bc-item-icon bc-follow-icon"></view>
+        <view class="bc-item-header">我的关注</view>
+      </view>
+      <view class="bc-item-right">
+        <view class="bc-item-arrow"></view>
+      </view>
+    </view>
+    <view class="bc-item bc-stat" bindtap="onToBuyerStat">
+      <view class="bc-item-left bc-stat-label">
+        <view class="bc-item-icon bc-stat-icon"></view>
+        <view class="bc-item-header">数据分析</view>
+      </view>
+      <view class="bc-item-right">
+        <view class="bc-item-arrow"></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bc-help-wrap">
+     <view class="bc-item bc-help" bindtap="onToBuyerHelp">
+      <view class="bc-item-left bc-help-label">
+        <view class="bc-item-icon bc-help-icon"></view>
+        <view class="bc-item-header">常见问题与解答</view>
+      </view>
+      <view class="bc-item-right">
+        <view class="bc-item-arrow"></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bc-changerole-wrap" bindtap="onTapChangeRole">切换角色</view>
+
+  <import src="../../templates/footer/buyerFooter.wxml"/>
+  <template is="buyerFooter" data="{{...footer}}"></template>
+</view>

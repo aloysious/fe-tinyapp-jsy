@@ -1,0 +1,26 @@
+<template name="skuerItem">
+  <view class="ri-wrap">
+    <view class="ri-avatar">
+      <image src="{{buyerAvatar}}"></image>
+      <view wx:if="{{hasNewComment}}" class="ri-newmsg"></view>
+    </view>
+    <view class="ri-info" data-rid="{{rid}}" bindtap="onToDetail">
+      <view class="ri-info-title">
+        {{title}} <text wx:if="{{amount}}" class="ri-info-sep">|</text> <text wx:if="{{amount}}" class="ri-info-amount">{{amount}}件</text>
+      </view>
+      <view class="ri-info-detail ri-info-date">
+        发布时间：{{publishTime}}
+      </view>
+      <view class="ri-info-detail ri-info-skuer">
+        采购客户：{{buyerName}}<block wx:if="{{buyerCompany}}"> | {{buyerCompany}}</block>
+      </view>
+    </view>
+    <view class="ri-more">
+      <view class="ri-more-status" style="color: {{statusColor}};">{{statusText}}</view>
+      <view class="ri-more-follow">
+        <view wx:if="{{!isFollow}}" class="ri-star" bindtap="onFollow" data-rid="{{rid}}"></view>
+        <view wx:else class="ri-star ri-star-selected" bindtap="onUnfollow" data-rid="{{rid}}"></view>
+      </view>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,113 @@
+<!--pages/buyerPublish/buyerPublish.wxml-->
+<view class="container">
+
+  <view class="bp-item bp-type-wrap">
+    <view class="bp-item-left bp-type-label">
+      <view class="bp-item-icon bp-type-icon"></view>
+      <view class="bp-item-header">一级品类</view>
+    </view>
+    <view class="bp-item-right">
+      <picker class="bp-picker bp-type-picker" range="{{typeList}}" value="{{typeIndex}}" range-key="name" bindchange="onChangeType">
+      <view class="bp-item-text">{{typeList[typeIndex].name}}</view>
+      </picker>
+      <view class="bp-item-arrow"></view>
+    </view>
+  </view>
+
+  <view class="bp-description-wrap">
+
+    <view class="description-title">
+      <view class="bp-item-left bp-desc-label">
+        <view class="bp-item-icon bp-desc-icon"></view>
+        <view class="bp-item-header">需求描述</view>
+      </view>
+      <view class="bp-item-right">
+        <view wx:if="{{isUseTpl}}" class="description-tpl-btn" bindtap="onToggleTpl">自由编辑</view>
+        <view wx:else class="description-tpl-btn" bindtap="onToggleTpl">使用模版</view>
+      </view>  
+    </view>
+
+    <view wx:if="{{!isUseTpl}}" class="description-content">
+      <textarea class="bp-content" placeholder-class="bp-content-placeholder" placeholder="请描述你的需求，如产品名称、产品规格、包装属性等..." bindinput="onInputContent"/>
+    </view>
+    <view wx:else class="description-content">
+      <view class="input-item">
+        <text>产品名称：</text>
+        <input class="bp-input" placeholder-class="bp-input-placeholder" type="text" value="{{productName}}" placeholder="请输入产品名称" bindinput="onInputProductName"/>
+      </view>
+      <view class="input-item">
+        <text>产品属性：</text>
+        <input class="bp-input" placeholder-class="bp-input-placeholder" type="text" value="{{property}}" placeholder="请输入产品属性" bindinput="onInputProperty"/>
+      </view>
+      <view class="input-item">
+        <text>包装规格：</text>
+        <input class="bp-input" placeholder-class="bp-input-placeholder" type="text" value="{{format}}" placeholder="请输入包装规格" bindinput="onInputFormat"/>
+      </view>
+      <view class="input-item">
+        <text>采购数量：</text>
+      <input class="bp-input" placeholder-class="bp-input-placeholder" type="text" value="{{amount}}" placeholder="请输入采购数量" bindinput="onInputAmount"/>
+      </view>
+      <view class="input-item">
+        <text>期望单价：</text>
+        <input class="bp-input" placeholder-class="bp-input-placeholder" type="text" value="{{perPrice}}" placeholder="请输入期望单价" bindinput="onInputPerPrice"/>
+        <text class="unit-text">元</text>
+      </view>
+      <view class="input-item">
+        <text>交货时间：</text>
+        <input class="bp-input" placeholder-class="bp-input-placeholder" type="text" value="{{deliveryDeadline}}" placeholder="请输入交货时间" bindinput="onInputDeliveryDeadline"/>
+      </view>
+      <textarea class="bp-content" placeholder-class="bp-content-placeholder" placeholder="请输入更多需求描述..." bindinput="onInputMoreInfo"/>
+    </view>
+
+    <view class="description-pic-wrap">
+      <view wx:for="{{pictures}}" wx:key="unique" class="pic-item">
+        <image class="description-pic" mode="aspectFill" src="{{item}}" data-url="{{item}}" bindtap="onPreviewPictures"></image>
+        <view class="description-pic-del" data-index="{{index}}" bindtap="onDeletePic"></view>
+      </view>
+      <view wx:if="{{pictures.length < 5}}" class="pic-item pic-add" bindtap="onAddPic"></view>
+    </view>
+  </view>
+
+  <view wx:if="{{!isAuthorized}}" class="bp-publisher-wrap">
+
+    <view class="publisher-title">
+      <view class="bp-item-left bp-pub-label">
+        <view class="bp-item-icon bp-pub-icon"></view>
+        <view class="bp-item-header">联系方式</view>
+      </view>
+    </view>
+
+    <view wx:if="{{isShowAuth}}" class="bp-pub-anth">
+      <view class="pub-auth-icon"></view>
+      <view class="pub-auth-text">您还未进行实名绑定，绑定后可自动关联联系方式。</view>
+      <view class="pub-auth-link">
+        <navigator url="/pages/buyerAuth/buyerAuth" hover-class="none">
+          去绑定<text class="pub-auth-arrow"></text>
+        </navigator>
+      </view>
+      <view class="pub-auth-del" bindtap="onCloseAuth"></view>
+    </view>
+
+    <view class="contact-wrap">
+
+      <view class="input-item input-item-ext">
+        <text>您的姓名：</text>
+        <input class="bp-input" placeholder-class="bp-input-placeholder" type="text" placeholder="请输入您的真实姓名" bindinput="onInputPublisherName"/>
+      </view>
+
+      <view class="input-item input-item-ext">
+        <text>联系电话：</text>
+        <input class="bp-input" placeholder-class="bp-input-placeholder" type="text" placeholder="请输入您的手机号码" bindinput="onInputPublisherContact"/>
+      </view>
+
+    </view>
+  </view>
+
+  <view class="bp-submit-wrap">
+    <view class="cancel-btn" bindtap="onCancel">取消</view>
+    <view class="submit-btn" bindtap="onSubmit">
+      发布<text></text>
+    </view>
+  </view>
+
+</view>

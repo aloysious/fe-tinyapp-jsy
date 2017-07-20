@@ -1,0 +1,55 @@
+<!--pages/buyerStat/buyerStat.wxml-->
+<view class="container">
+
+  <view class="bs-wrap">
+    <view class="bs-title-wrap">
+      <view class="bs-title">我一共发布了多少次需求？</view>
+      <view class="bs-count">{{totalCount}}次</view>
+    </view>
+    <view class="bs-content-wrap">
+      <view class="bs-filter">
+        <view class="filter-header">统计方式：</view>
+        <picker class="picker" range="{{filterList}}" value="{{filterIndex}}" range-key="name" bindchange="onChangeFilter">
+          <view class="picker-text">{{filterList[filterIndex].name}}</view>
+          <view class="picker-icon"></view>
+        </picker>
+      </view>
+      <view class="bs-main">
+        <canvas canvas-id="requirementCanvas" class="canvas" style="height:300px"></canvas>
+      </view>
+    </view>
+  </view>
+
+  <view class="bs-wrap">
+    <view class="bs-title-wrap">
+      <view class="bs-title">我的需求平均多长时间得到响应？</view>
+      <view class="bs-count">{{averageTime}}小时</view>
+    </view>
+    <view class="bs-content-wrap">
+      <view class="bs-main">
+        <canvas canvas-id="timeCanvas" class="canvas" style="height:300px"></canvas>
+      </view>
+    </view>
+  </view>
+
+  <view class="bs-wrap">
+    <view class="bs-title-wrap">
+      <view class="bs-title">谁是我的金牌SKU经理？</view>
+      <view class="bs-label">合作次数</view>
+    </view>
+    <view class="bs-content-wrap bs-content-wrap-more">
+      <view wx:for="{{partnerList}}" wx:key="unique" class="bs-partner-wrap">
+        <view class="partner-icon partner-icon-{{index + 1}}"></view>
+        <image src="{{item.avatar || defaultAvatar}}" class="partner-avatar partner-avatar-{{index + 1}}"></image>
+        <view class="partner-info">
+          <view class="partner-info-main">{{item.name}}</view>
+          <view class="partner-info-sub">公司：{{item.company}}</view>
+          <view class="partner-info-sub" data-phone="{{item.phone}}" bindtap="onDialPhone">电话：{{item.phone}}</view>
+        </view>
+        <view class="partner-count partner-count-{{index + 1}}">{{item.requirementCount}}次</view>
+      </view>
+    </view>
+  </view>
+
+  
+</view>

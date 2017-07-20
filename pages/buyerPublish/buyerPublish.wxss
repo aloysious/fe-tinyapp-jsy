@@ -1,0 +1,294 @@
+/* pages/buyerPublish/buyerPublish.wxss */
+.container {
+  height: auto;
+  padding-bottom: 98rpx;
+  overflow-x: hidden;
+}
+
+.description-pic {
+  width: 100rpx;
+  height: 100rpx;
+  float: left;
+}
+
+.bp-submit-wrap {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 98rpx;
+  display: flex;
+  flex-direction: row;
+  border-top: 1rpx solid #ccc;
+  z-index: 999;
+}
+
+.cancel-btn {
+  flex: 1;
+  background-color: #fff;
+  font-size: 32rpx;
+  color: #4a4a4a;
+  text-align: center;
+  height: 100%;
+  line-height: 98rpx;
+}
+
+.submit-btn {
+  flex: 1;
+  background-color: #4285F4;
+  height: 100%;
+  line-height: 98rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #fff;
+  font-weight: 500;
+}
+
+.submit-btn text {
+  width: 34rpx;
+  height: 34rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_ly_fly_white.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin-left: 20rpx;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.bp-item {
+  height: 100rpx;
+  padding: 32rpx 30rpx;
+  border-bottom: 1rpx solid #e0e0e0;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.bp-type-wrap {
+  margin-bottom: 21rpx;
+}
+
+.bp-item-left {
+  float: left;
+}
+
+.bp-item-right {
+  float: right;
+}
+
+.bp-item-icon {
+  width: 36rpx;
+  height: 36rpx;  
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_fbxq_yj.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -4rpx;
+  margin-right: 14rpx;
+}
+
+.bp-item-header {
+  font-size: 28rpx;
+  color: #1b1d1d;
+  display: inline-block;
+}
+
+.bp-picker {
+  display: inline-block;
+}
+
+.bp-item-text {
+  font-size: 28rpx;
+  color: #767676;
+}
+
+.bp-item-arrow {
+  width: 14rpx;
+  height: 24rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_gg_arrow.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10rpx;
+  margin-top: -4rpx;
+}
+
+.bp-desc-icon {
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_fbxq_xq.png);
+}
+
+.bp-pub-icon {
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_fbxq_call.png);
+}
+
+.bp-description-wrap,
+.bp-publisher-wrap {
+  background-color: #fff;
+  margin-bottom: 21rpx;
+}
+
+.description-title,
+.publisher-title {
+  height: 100rpx;
+  padding: 32rpx 30rpx 32rpx 0;
+  margin-left: 30rpx;
+  border-bottom: 1rpx solid #e0e0e0;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.description-tpl-btn {
+  color: #4285F4;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.bp-content {
+  padding: 32rpx 30rpx 32rpx 0;
+  margin-left: 30rpx;
+  font-size: 28rpx;
+  color: #1b1d1d;
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #e0e0e0;
+}
+
+.bp-content-placeholder {
+  color: #b4b4b4;
+}
+
+.input-item {
+  padding: 0rpx 30rpx 0rpx 0;
+  margin-left: 30rpx;
+  font-size: 28rpx;
+  color: #1b1d1d;
+  width: 100%;
+  height: 100rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #e0e0e0;
+  display: flex;
+  flex-direction: row;
+}
+
+.input-item-ext {
+  border-top: 1rpx solid #e0e0e0;
+  border-bottom: 0rpx;
+}
+
+.input-item text {
+  width: 140rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+}
+
+.bp-input {
+  flex: 1;
+  height: 90rpx;
+  line-height: 90rpx;
+}
+
+.unit-text {
+  text-align: right;
+  margin-right: 30rpx;
+}
+
+.bp-input-placeholder {
+  color: #b4b4b4;
+}
+
+.description-pic-wrap {
+  padding: 30rpx 0 30rpx 30rpx;
+  display: flex;
+  flex-direction: row;
+  height: 120rpx;
+}
+
+.pic-item {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 22rpx;
+  position: relative;
+}
+
+.description-pic {
+  width: 100%;
+  height: 100%;
+}
+
+.description-pic-del {
+  width: 60rpx;
+  height: 60rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/btn_delete.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: absolute;
+  top: -30rpx;
+  right: -30rpx;
+}
+
+.pic-add {
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/btn_fbxq_pic.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.bp-pub-anth {
+  margin: 22rpx 30rpx;
+  height: 264rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_xqfb_bd_onepx.png);
+  background-repeat: repeat-y;
+  background-size: 100%;
+  border-radius: 4rpx;
+  position: relative;
+  padding-top: 40rpx;
+  box-sizing: border-box;
+}
+
+.pub-auth-del {
+  width: 35rpx;
+  height: 36rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/btn_fbxq_close.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: absolute;
+  top: 8rpx;
+  right: 8rpx;
+}
+
+.pub-auth-icon {
+  width: 143rpx;
+  height: 73rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/pic_fbxq_smbd.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin: auto;
+  margin-bottom: 16rpx;
+}
+
+.pub-auth-text {
+  opacity: 0.7;
+  font-size: 24rpx;
+  color: #FFFFFF;
+  line-height: 36rpx;
+  text-align: center;
+  margin-bottom: 26rpx;
+}
+
+.pub-auth-link {
+  font-size: 28rpx;
+  color: #FFFFFF;
+  line-height: 48rpx;
+  text-align: center;
+}
+
+.pub-auth-link text {
+  width: 13rpx;
+  height: 22rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_xqfb_arrow.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  display: inline-block;
+  margin-left: 10rpx;
+  vertical-align: middle;
+}

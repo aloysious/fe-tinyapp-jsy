@@ -1,0 +1,30 @@
+<!--pages/commentAdd/commentAdd.wxml-->
+<view class="container">
+  <view class="ca-info-wrap">
+    <view class="ca-info-img">
+      <image src="{{avatar}}"></image>
+    </view>
+    <view class="ca-info-main">
+      <view wx:if="{{title}}" class="ca-info-title">{{title}}</view>
+      <view class="ca-info-date">留言日期：{{today}}</view>
+    </view>
+    <view class="ca-info-status" style="color: {{statusColor}};">{{statusText}}</view>
+  </view>
+  <textarea class="ca-textarea" placeholder-class="ca-textarea-placeholder" placeholder="写留言..." bindinput="onInputContent" />
+
+  <view class="ca-pic-wrap">
+    <view wx:for="{{pictures}}" wx:key="unique" class="pic-item">
+      <image class="ca-pic" mode="aspectFill" src="{{item}}" data-url="{{item}}" bindtap="onPreviewPictures"></image>
+      <view class="ca-pic-del" data-index="{{index}}" bindtap="onDeletePic"></view>
+    </view>
+  </view>
+
+</view>
+
+<view class="ca-banner-wrap">
+  <view wx:if="{{pictures.length < 5}}" class="ca-banner-pic" bindtap="onAddPic"></view>
+  <view class="ca-banner-submit" bindtap="onSubmitComment">
+    <view class="banner-submit-text">发表留言</view>
+    <view class="banner-submit-icon"></view>
+  </view>
+</view>

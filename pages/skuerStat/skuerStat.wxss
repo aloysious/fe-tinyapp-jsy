@@ -1,0 +1,159 @@
+/* pages/buyerStat/buyerStat.wxss */
+.container {
+  height: auto;
+}
+
+.bs-wrap {
+  background-color: #fff;
+  margin-bottom: 20rpx;
+}
+
+.bs-title-wrap {
+  padding: 20rpx 30rpx;
+  border-bottom: 1rpx solid #e0e0e0;
+  display: flex;
+  flex-direction: row;
+}
+
+.bs-title {
+  font-size: 28rpx;
+  color: #1B1D1D;
+  line-height: 48rpx;
+  flex: 3;
+}
+
+.bs-count {
+  font-size: 28rpx;
+  color: #FDC300;
+  line-height: 48rpx;
+  font-weight: 500;
+  flex: 1;
+  text-align: right;
+}
+
+.bs-content-wrap {
+  padding: 20rpx 30rpx;
+}
+
+.bs-content-wrap-more {
+  padding: 0;
+}
+
+.filter-header {
+  font-size: 28rpx;
+  color: #1b1d1d;
+  display: inline-block;
+}
+
+.picker {
+  display: inline-block;
+}
+
+.picker-text {
+  font-size: 28rpx;
+  color: #999;
+  display: inline-block;
+  margin-right: 10rpx;
+}
+
+.picker-icon {
+  width: 20rpx;
+  height: 8rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_needs_arrow.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.canvas {
+  width: 100%;
+  background-color: #fff;
+}
+
+.bs-label {
+  font-size: 24rpx;
+  color: #CBCBCB;
+  line-height: 48rpx;
+}
+
+.bs-partner-wrap {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1rpx solid #E0E0E0;
+  padding: 33rpx 30rpx;
+}
+
+.partner-icon {
+  width: 85rpx;
+  height: 85rpx;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin-right: 14rpx;
+  margin-top: 7rpx;
+}
+
+.partner-icon-1 {
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_chart_one.png);
+}
+
+.partner-icon-2 {
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_chart_two.png);
+}
+
+.partner-icon-3 {
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_chart_three.png);
+}
+
+.partner-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  margin-right: 19rpx;
+}
+
+.partner-avatar-1 {
+  border: 1rpx solid #FDC300;
+}
+
+.partner-avatar-2 {
+  border: 1rpx solid #B2ADAD;
+}
+
+.partner-avatar-3 {
+  border: 1rpx solid #CB7A4E;
+}
+
+.partner-info-main {
+  font-size: 28rpx;
+  color: #1B1D1D;
+  line-height: 48rpx;
+  margin-top: -10rpx;
+  margin-bottom: 4rpx;
+}
+
+.partner-info-sub {
+  font-size: 24rpx;
+  color: #767676;
+  line-height: 27rpx;
+  margin-bottom: 12rpx;
+}
+
+.partner-count {
+  font-size: 28rpx;
+  line-height: 24rpx;
+  text-align: right;
+  flex: 1;
+}
+
+.partner-count-1 {
+  color: #FDC300;
+}
+
+.partner-count-2 {
+  color: #B2ADAD;
+}
+
+.partner-count-3 {
+  color: #CB7A4E;
+}

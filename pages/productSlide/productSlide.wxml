@@ -1,0 +1,18 @@
+<view class="container slide-con">
+    <swiper class="slide-swiper" duration="500" current="{{current}}" bindchange="onSwiperChange" bindtap="onSwiperTap">
+      <block wx:for="{{imageUrls}}">
+        <swiper-item class="slide-image-wrap">
+          <image src="{{item.productPic}}" class="slide-image" mode="aspectFit"/>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="slide-info" hidden="{{isHidden}}">
+      <view class="slide-info-left">
+        <view class="slide-title">{{title}}</view>
+        <view class="slide-description">{{description}}</view>
+      </view>
+      <view class="slide-info-right">
+        {{current + 1}} / {{total}}
+      </view>
+    </view>
+</view>

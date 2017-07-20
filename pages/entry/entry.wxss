@@ -1,0 +1,99 @@
+/* pages/entry/entry.wxss */
+.container {
+  background-color: #fff;
+}
+
+.entry-banner {
+  height: 400rpx;
+  /*padding-top: 44rpx;
+  box-sizing: border-box;*/
+  background-color: #4285F4;
+}
+
+.swiper {
+  height: 100%;
+}
+
+swiper-item {
+  height: 100%;
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+}
+
+.entry-banner-logo {
+  width: 300rpx;
+  height: 227rpx;
+  margin: auto;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/pic_logo_bg.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.entry-banner-slogan {
+  opacity: 0.5;
+  font-size: 28rpx;
+  color: #FFFFFF;
+  letter-spacing: 23.33rpx;
+  line-height: 40rpx;
+  margin-top: 20rpx;
+  text-align: center;
+}
+
+.buyer-wrap,
+.skuer-wrap {
+  width: 690rpx;
+  height: 284rpx;
+  margin: 40rpx auto 0 auto;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.buyer-wrap {
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/bg_purchaser.png);
+}
+
+.skuer-wrap {
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/bg_sku.png);
+}
+
+.buyer-text-wrap,
+.skuer-text-wrap {
+  margin: auto;
+  margin-top: 113rpx;
+  font-size: 48rpx;
+  color: #FFFFFF;
+  line-height: 58rpx;
+  text-align: center;
+}
+
+.buyer-text-wrap text,
+.skuer-text-wrap text{
+  width: 11rpx;
+  height: 17rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/bg_purchaser_arrow.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin-left: 16rpx;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.buyer-text-sub,
+.skuer-text-sub {
+  opacity: 0.5;
+  font-size: 24rpx;
+  color: #FFFFFF;
+  line-height: 36rpx;
+  text-align: center;
+}
+
+.qa-wrap {
+  margin-top: 40rpx;
+  color: #4285f4;
+  font-size: 24rpx;
+  text-align: center;
+  opacity: 0.8;
+}

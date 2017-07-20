@@ -1,0 +1,9 @@
+<view class="container photo-con">
+    <scroll-view class="photo-scroll" bindscrolltolower="loadMorePhotos" scroll-y="true">
+        <block wx:for="{{imageUrls}}" wx:key="id">
+            <view class="photo-wrap photo-wrap-{{item.type}}">
+                <image mode="aspectFill" class="photo-img" src="{{item.productPic}}" data-index="{{index}}" bindtap="onOpenPhoto"></image>
+            </view>
+        </block>
+    </scroll-view>
+</view>

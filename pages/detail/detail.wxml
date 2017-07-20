@@ -1,0 +1,175 @@
+<!--pages/detail/detail.wxml-->
+<view class="container">
+
+  <view wx:if="{{baseInfo.alertType != null && baseInfo.alertType != -1}}" class="bd-alert-wrap">
+    <view class="bd-alert-icon"></view>
+    <view wx:if="{{baseInfo.alertType == 0}}" class="bd-alert-tips">交货时间临近，请注意沟通</view>
+    <view wx:if="{{baseInfo.alertType == 1}}" class="bd-alert-tips">结款时间临近，请注意沟通</view>
+    <view class="bd-alert-del" bindtap="onAlertClose"></view>
+  </view>
+  
+  <view class="bd-top-wrap">
+    <view class="bd-title-wrap">
+      <view class="bd-title-left">
+        <view wx:if="{{extInfo.productName}}" class="bd-title-main">{{extInfo.productName}}</view>
+        <view class="bd-title-time"><text wx:if="{{baseInfo.relatedRole == 0}}">我</text><text wx:else>{{extInfo.buyerName}}</text>发布于{{baseInfo.publishTime}}</view>
+      </view>
+      <view wx:if="{{baseInfo.relatedRole == 0 && baseInfo.status == '0'}}" class="remove-btn" bindtap="onRemoveRequirement"></view>
+      <view wx:if="{{baseInfo.status > '6'}}" class="bd-title-right">
+        <view class="bd-title-status" style="color: {{baseInfo.statusColor}};">{{baseInfo.statusText}}</view>
+      </view>
+    </view>
+    <scroll-view wx:if="{{baseInfo.status <= '6'}}" scroll-x="true" class="bd-status-scroll" scroll-left="{{scrollLeft}}" scroll-with-animation="true">
+      <view class="status-item-wrap">
+      <block wx:for="{{statusList}}" wx:key="unique">
+        <block wx:if="{{item.statusId > '-1' && item.statusId < baseInfo.status}}">
+          <view class="status-item status-item-done">
+            <view class="status-item-num"><text></text></view>
+            <view class="status-item-text">{{item.statusText}}</view>
+          </view>
+        </block>
+        <block wx:elif="{{item.statusId == baseInfo.status}}">
+          <view class="status-item">
+            <view class="status-item-num">{{index}}</view>
+            <view class="status-item-text">{{item.statusText}}</view>
+          </view>
+        </block>
+        <block wx:elif="{{item.statusId < '7' && item.statusId > baseInfo.status}}">
+          <view class="status-item status-item-future">
+            <view class="status-item-num">{{index}}</view>
+            <view class="status-item-text">{{item.statusText}}</view>
+          </view>
+        </block>
+      </block>
+      </view>
+      <view class="progress-wrap">
+        <view class="progress-bar" style="width:{{progressBarWidth}}rpx;"></view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="bd-desc-wrap">
+    <view class="bd-desc-title">
+      <view class="bd-desc-icon"></view>
+      <view class="bd-desc-text">需求描述</view>
+    </view>
+    <view class="bd-desc-detail {{uncoverCls}}">
+      <text class="bd-desc-content">{{baseInfo.description.content}}</text>
+      <view class="bd-desc-pics">
+        <image wx:for="{{baseInfo.description.pictures}}" wx:key="unique" src="{{item}}" mode="aspectFill" data-url="{{item}}" bindtap="onPreviewDesc"></image>   
+      </view>
+      <view wx:if="{{!uncoverCls}}" class="bd-desc-open">
+        <view class="bd-open-wrap" bindtap="onOpenDesc">
+          <view class="bd-open-text">展开全部</view>
+          <view class="bd-open-icon"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bd-info-wrap">
+    <view wx:if="{{baseInfo.relatedRole == 0 && extInfo.skuerName}}" class="bd-info-item">
+      <view class="bd-item-left">SKU经理：{{extInfo.skuerName}}<block wx:if="{{extInfo.skuerCompany}}"><text>|</text>{{extInfo.skuerCompany}}</block></view>
+      <view class="bd-item-right bd-item-phone" bindtap="onTapContact" data-phone="{{extInfo.skuerContact}}"></view>
+    </view>
+    <view wx:elif="{{baseInfo.relatedRole != 0}}" class="bd-info-item">
+      <view class="bd-item-left">采购客户：{{extInfo.buyerName}}<block wx:if="{{extInfo.buyerCompany}}"><text>|</text>{{extInfo.buyerCompany}}</block></view>
+      <view class="bd-item-right bd-item-phone" bindtap="onTapContact" data-phone="{{extInfo.buyerContact}}"></view>
+    </view>
+    <view wx:if="{{extInfo.productName}}" class="bd-info-item">
+      产品名称：{{extInfo.productName}}
+    </view>
+    <view wx:if="{{baseInfo.productType}}"  class="bd-info-item">
+      一级品类：{{baseInfo.productType}}
+    </view>
+    <view wx:if="{{extInfo.format}}" class="bd-info-item">
+      包装规格：{{extInfo.format}}
+    </view>
+    <view wx:if="{{extInfo.amount}}" class="bd-info-item">
+      起订数量：{{extInfo.amount}}{{extInfo.unit}}
+    </view>
+    <view wx:if="{{extInfo.unitPrice}}" class="bd-info-item">
+      采购单价：{{extInfo.unitPrice}}元
+    </view>
+    <view wx:if="{{extInfo.deliveryDeadline}}" class="bd-info-item">
+      交货时间：{{extInfo.deliveryDeadline}}
+    </view>
+    <view wx:if="{{extInfo.paymentDeadline}}" class="bd-info-item">
+      结款时间：{{extInfo.paymentDeadline}}
+    </view>
+    <view wx:if="{{extInfo.expressCompany}}" class="bd-info-item">
+      物流公司：{{extInfo.expressCompany}}
+    </view>
+    <view wx:if="{{extInfo.expressCode}}" class="bd-info-item bd-info-item-last">
+      物流单号：{{extInfo.expressCode}}
+    </view>
+    <view class="bd-info-line"></view>
+  </view>
+
+  <view class="bd-comment-wrap">
+    <view class="bd-comment-title">
+      <view class="bd-comment-icon"></view>
+      <view class="bd-comment-text">需求跟踪</view>
+    </view>
+    <view class="bd-comment-list">
+
+      <view wx:for="{{commentList}}" wx:key="unique" class="bd-comment-item">
+        <view class="bd-comment-node"></view>
+        <view class="bd-comment-avatar">
+          <image src="{{item.publisherAvatar}}"></image>
+        </view>
+        <view class="bd-comment-detail">
+          <view class="comment-detail-top">
+            <text class="comment-detail-date">{{item.publishTime}}</text>
+            <text class="comment-detail-sep"> | </text>
+            <text class="comment-detail-name">{{item.publisherName}}</text>
+          </view>
+          <view class="comment-detail-bottom">
+            <view class="comment-detail-content"><text>{{item.content}}</text></view>
+            <view class="comment-detail-pics">
+              <image wx:for="{{item.pictures}}" wx:key="unique" wx:for-item="p" wx:for-index="i" src="{{p}}" mode="aspectFill" data-index="{{index}}" data-url="{{p}}" bindtap="onPreviewComment"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="bd-comment-line"></view>
+
+    </view>
+  </view>
+
+</view>
+
+<view class="bd-tool-wrap">
+
+  <!-- relatedRole == 0，采购，可以留言 -->
+  <block wx:if="{{baseInfo.relatedRole == 0}}">
+    <view class="bd-tool-input" bindtap="onToComment">我要留言</view>
+  </block>
+  <!-- relatedRole == 1，是终止态或完结态，sku经理，只可以留言 -->
+  <block wx:elif="{{baseInfo.relatedRole == 1 && ( baseInfo.status == 6 || baseInfo.status == 7  || baseInfo.status == 8 )}}">
+    <view class="bd-tool-input" bindtap="onToComment">我要留言</view>
+  </block>
+  <!-- relatedRole == 1，不是终止态或完结态，sku经理，可以留言，可以改状态 -->
+  <block wx:elif="{{baseInfo.relatedRole == 1}}">
+    <view class="bd-tool-input" style="margin-right:15rpx;" bindtap="onToComment">我要留言</view>
+    <view class="bd-tool-changestatus" bindtap="onToChangeStatus">修改状态</view>
+  </block>
+  <!-- relatedRole == -1， 如果用户是采购人员或者什么也不是，不能留言 -->
+  <block wx:elif="{{baseInfo.relatedRole == -1 && ( roleType == 0 || roleType == -1 )}}">
+    <view class="bd-tool-empty" bindtap="onToEntry"><text></text>SKU经理实名绑定后可以抢单</view>
+  </block>
+  <!-- relatedRole == -1， 如果用户是sku经理， 可以抢单 -->
+  <block wx:elif="{{baseInfo.relatedRole == -1}}">
+    <view class="bd-tool-match" bindtap="onToResponse"><text></text>我要抢单</view>
+  </block>
+
+  <view class="bd-tool-comment">
+    <view class="tool-comment-icon"></view>
+    <view class="tool-comment-num">{{commentCount}}</view>
+  </view>
+  <block wx:if="{{baseInfo.relatedRole != -1}}">
+    <view wx:if="{{!baseInfo.isFollow}}" class="bd-tool-follow" bindtap="onToggleFollow"></view>
+    <view wx:else class="bd-tool-follow bd-tool-follow-selected" bindtap="onToggleFollow"></view>
+  </block>
+</view>

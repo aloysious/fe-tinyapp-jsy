@@ -1,0 +1,102 @@
+.ri-wrap {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  padding: 33rpx 30rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #e0e0e0;
+}
+
+.ri-avatar {
+  width: 78rpx;
+  margin-right: 30rpx;
+  position: relative;
+}
+
+.ri-avatar image {
+  width: 78rpx;
+  height: 78rpx;
+  border-radius: 39rpx;
+}
+
+.ri-newmsg {
+  width: 19rpx;
+  height: 19rpx;
+  background: #F55523;
+  top: 0rpx;
+  right: 0rpx;
+  position: absolute;
+  border-radius: 50%;
+}
+
+.ri-info {
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+}
+
+.ri-more {
+  width: 130rpx;
+}
+
+.ri-info-title {
+  width: 100%;
+  font-size: 28rpx;
+  color: #1b1d1d;
+  line-height: 1;
+  white-space: nowrap;  
+  text-overflow: ellipsis; 
+  overflow: hidden;
+}
+
+.ri-info-sep {
+  color: #e0e0e0;
+}
+
+.ri-info-detail {
+  font-size: 24rpx;
+  line-height: 24rpx;
+  color: #767676;
+  margin-top: 12rpx;
+}
+
+.ri-info-skuer {
+  width: 100%;
+  white-space: nowrap;  
+  text-overflow: ellipsis; 
+  overflow: hidden;
+}
+
+.ri-more-status {
+  font-size: 24rpx;
+  line-height: 1;
+  text-align: right;
+}
+
+.ri-star {
+  width: 70rpx;
+  height: 70rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/btn_needs_star_nor.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  float: right;
+  margin-top: 10rpx;
+  margin-right: -15rpx;
+}
+
+.ri-star-selected {
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/btn_needs_star_pre.png);
+}
+
+.ri-more-match {
+  width: 102rpx;
+  height: 48rpx;
+  border: 1px solid #CCD0DA;
+  border-radius: 24rpx;
+  font-size: 22rpx;
+  color: #767676;
+  line-height: 48rpx;
+  text-align: center;
+  margin-top: 40rpx;
+  float: right;
+}

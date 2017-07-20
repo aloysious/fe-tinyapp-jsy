@@ -1,0 +1,270 @@
+/* pages/commentAdd/commentAdd.wxss */
+.container {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.ca-info-wrap {
+  padding: 33rpx 30rpx;
+  background-color: #f9f9f9;
+  border-bottom: 1rpx solid #e0e0e0;
+  display: flex;
+  flex-direction: row;
+}
+
+.ca-info-img {
+  width: 78rpx;
+  height: 78rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 30rpx;
+}
+
+.ca-info-img image {
+  width: 100%;
+  height: 100%;
+}
+
+.ca-info-main {
+  flex: 1;
+}
+
+.ca-info-title {
+  font-size: 28rpx;
+  color: #1B1D1D;
+  line-height: 48rpx;
+}
+
+.ca-info-date {
+  font-size: 24rpx;
+  color: #767676;
+  line-height: 27rpx;
+}
+
+.ca-info-status {
+  width: 135rpx;
+  font-size: 24rpx;
+  line-height: 48rpx;
+  text-align: right;
+}
+
+.ca-textarea {
+  padding: 21rpx 30rpx;
+  font-size: 28rpx;
+  color: #1b1d1d;
+  line-height: 48rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ca-textarea-placeholder {
+  font-size: 28rpx;
+  color: #B4B4B4;
+  line-height: 48rpx;
+}
+
+.ca-banner-wrap {
+  position: fixed;
+  width: 100%;
+  height: 80rpx;
+  left: 0;
+  bottom: 0;
+  background-color: #f9f9f9;
+  border-top: 1rpx solid #e0e0e0;
+  font-weight: 500;
+}
+
+.ca-banner-pic {
+  width: 70rpx;
+  height: 70rpx;
+  float: left;
+  margin: 5rpx 0 0 14rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/btn_ly_picture.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.ca-banner-submit {
+  float: right;
+  margin-right: 30rpx;
+  margin-top: 16rpx;
+}
+
+.banner-submit-text {
+  font-size: 28rpx;
+  color: #4285F4;
+  line-height: 48rpx;
+  display: inline-block;
+  margin-right: 20rpx;
+}
+
+.banner-submit-icon {
+  width: 34rpx;
+  height: 34rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_ly_fly_nor.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.ca-pic-wrap {
+  padding: 30rpx 0 30rpx 30rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.pic-item {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 22rpx;
+  position: relative;
+}
+
+.ca-pic {
+  width: 100%;
+  height: 100%;
+}
+
+.ca-pic-del {
+  width: 60rpx;
+  height: 60rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/btn_delete.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: absolute;
+  top: -30rpx;
+  right: -30rpx;
+}
+
+.ca-info-tips {
+  padding: 21rpx 30rpx;
+  font-size: 24rpx;
+  color: #767676;
+  line-height: 36rpx;
+}
+
+.ca-info-content {
+  background-color: #fff;
+  position: relative;
+  margin-bottom: 20rpx;
+}
+
+.ca-info-line {
+  position: absolute;
+  width: 100%;
+  height: 2rpx;
+  left: 0;
+  bottom: 0;
+  background-color: #fff;
+}
+
+.input-item {
+  padding: 0rpx 30rpx 0rpx 0;
+  margin-left: 30rpx;
+  font-size: 28rpx;
+  color: #1b1d1d;
+  width: 100%;
+  height: 100rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #e0e0e0;
+  display: flex;
+  flex-direction: row;
+}
+
+.input-item-ext {
+  border-top: 1rpx solid #e0e0e0;
+  border-bottom: 0rpx;
+}
+
+.input-item text {
+  width: 140rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+}
+
+.ca-picker {
+  flex: 1;
+}
+
+.ca-input {
+  flex: 1;
+  height: 90rpx;
+  line-height: 90rpx;
+}
+
+.ca-input-placeholder,
+.ca-input text {
+  color: #b4b4b4;
+}
+
+.ca-cal-icon {
+  width: 70rpx;
+  height: 70rpx;
+  margin: 15rpx 21rpx 0 5rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/btn_ggzt_calendar.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.ca-preview-wrap {
+  height: 100rpx;
+  background-color: #fff;
+  text-align: center;
+  font-size: 28rpx;
+  color: #4285F4;
+  line-height: 100rpx;
+  font-weight: 500;
+}
+
+.ca-preview-wrap text {
+  width: 39rpx;
+  height: 36rpx;
+  display: inline-block;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_ggzt_photo.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  vertical-align: middle;
+  margin-right: 11rpx;
+  margin-top: -5rpx;
+}
+
+.ca-banner-wrap {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 98rpx;
+  background: #4285F4;
+  text-align: center;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  line-height: 98rpx;
+}
+
+.ca-info-terminal {
+  padding: 30rpx 30rpx;
+  text-align: right;
+  font-size: 24rpx;
+  color: #9B9B9B;
+  line-height: 48rpx;
+}
+
+.ca-info-terminal text {
+  display: inline-block;
+  width: 24rpx;
+  height: 24rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_ggzt_over.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  vertical-align: middle;
+  margin-right: 10rpx;
+  margin-top: -3rpx;
+}
+
+.unit-text {
+  text-align: right;
+  margin-right: 30rpx;
+}
+
+

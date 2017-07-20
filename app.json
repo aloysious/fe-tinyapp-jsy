@@ -1,0 +1,31 @@
+{
+  "pages":[
+    "pages/entry/entry",
+    "pages/buyerList/buyerList",
+    "pages/commentAdd/commentAdd",
+    "pages/buyerPublish/buyerPublish",
+    "pages/buyerCenter/buyerCenter",
+    "pages/buyerAuth/buyerAuth",
+    "pages/buyerFollow/buyerFollow",
+    "pages/buyerStat/buyerStat",
+    "pages/skuerList/skuerList",
+    "pages/skuerMatch/skuerMatch",
+    "pages/detail/detail",
+    "pages/skuerResponse/skuerResponse",
+    "pages/skuerCenter/skuerCenter",
+    "pages/skuerAuth/skuerAuth",
+    "pages/skuerFollow/skuerFollow",
+    "pages/skuerStat/skuerStat",
+    "pages/qa/qa",
+    "pages/statusChange/statusChange",
+    "pages/statusTerminate/statusTerminate",
+    "pages/productList/productList",
+    "pages/productSlide/productSlide"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#4285f4",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"white"
+  }
+}

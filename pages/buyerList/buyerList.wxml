@@ -1,0 +1,79 @@
+<!--pages/buyerList/buyerList.wxml-->
+<import src="../../templates/requirementItem/buyerItem.wxml"/>
+
+<view class="container">
+  <view class="filter-wrap">
+    <view class="filter-status">
+      <view class="filter-status-header">一级品类：</view>
+      <picker class="status-picker" range="{{typeList}}" value="{{typeIndex}}" range-key="name" bindchange="onChangeType">
+        <view class="status-picker-text">{{typeList[typeIndex].name}}</view>
+        <view class="status-picker-icon"></view>
+      </picker>
+    </view>
+    <view class="filter-more" bindtap="{{filterMoreToggle}}"></view>
+    <view class="filter-refresh" bindtap="onConfirmFilter"></view>
+  </view>
+  <view class="list-wrap">
+    <scroll-view class="list" style="padding-bottom:{{listPaddingBottom}}rpx;" scroll-y="true" bindscrolltolower="onGetMore" lower-threshold="100">
+      <template wx:for="{{list}}" wx:key="unique" is="buyerItem" data="{{...item}}"></template>
+      <view wx:if="{{hasMore}}" class="loading-more">
+        <view class="loading-more-icon"></view>
+        <view class="loading-more-text">正在加载...</view>
+      </view>
+      <view class="list-empty-wrap" wx:if="{{list.length == 0 && !hasMore}}">
+        <view class="list-empty-icon"></view>
+        <view class="list-empty-text">这里太干净了</view>
+        <view class="list-empty-text">快去发布你的需求吧</view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <import src="../../templates/footer/buyerFooter.wxml"/>
+  <template is="buyerFooter" data="{{...footer}}"></template>
+</view>
+
+<view class="filter-mask" bindtap="onCloseFilterPanel" animation="{{filterMaskAnim}}" style="display:{{filterMaskDisplay}};"></view>
+<view class="filter-panel {{filterOpenCls}}" animation="{{filterPanelAnim}}">
+  <view class="fp-item fp-time">
+    <view class="fp-item-left fp-time-label">
+      <view class="fp-item-icon fp-time-icon"></view>
+      <view class="fp-item-header">发布时间</view>
+    </view>
+    <view class="fp-item-right">
+      <picker class="fp-picker fp-time-start" mode="date" value="{{publishTimeStart}}" start="2017-01-01" end="2099-12-31" bindchange="onChangeStartTime">
+        <view class="fp-item-text time-start-value">{{publishTimeStart}}</view>
+      </picker>
+      <view class="fp-item-arrow"></view>
+      <view class="fp-time-sep">至</view>
+      <picker class="fp-picker fp-time-end" mode="date" value="{{publishTimeEnd}}" start="2017-01-01" end="2099-12-31" bindchange="onChangeEndTime">
+        <view class="fp-item-text time-end-value">{{publishTimeEnd}}</view>
+      </picker>
+      <view class="fp-item-arrow"></view>
+    </view>
+  </view>
+  <view class="fp-item fp-type">
+    <view class="fp-item-left fp-type-label">
+      <view class="fp-item-icon fp-type-icon"></view>
+      <view class="fp-item-header">需求状态</view>
+    </view>
+    <view class="fp-item-right">
+      <picker class="fp-picker fp-type-picker" range="{{statusList}}" value="{{statusIndex}}" range-key="statusText" bindchange="onChangeStatus">
+      <view class="fp-item-text">{{statusList[statusIndex].statusText}}</view>
+      </picker>
+      <view class="fp-item-arrow"></view>
+    </view>
+  </view>
+  <view class="fp-item fp-follow">
+    <view class="fp-item-left fp-follow-label">
+      <view class="fp-item-icon fp-follow-icon"></view>
+      <view class="fp-item-header">仅显示已关注需求</view>
+    </view>
+    <view class="fp-item-right">
+      <view wx:if="{{!isOnlyFollow}}" class="fp-follow-text" bindtap="onToggleFilterFollow"></view>
+      <view wx:else class="fp-follow-text fp-follow-selected" bindtap="onToggleFilterFollow"></view>
+    </view>
+    
+  </view>
+  <view class="fp-confirm-btn" bindtap="onConfirmFilter">确定</view>
+  <view class="filter-arrow-icon"></view>
+</view>

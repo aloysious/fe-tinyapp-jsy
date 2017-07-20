@@ -1,0 +1,55 @@
+<!--pages/skuerAuth/skuerAuth.wxml-->
+<view class="container">
+
+  <view class="ba-producttype-wrap" bindtap="onOpenProductType">
+    <text>关注品类：</text>
+    <scroll-view scroll-x="true" class="ba-producttype-list">
+      <view class="ba-producttype-item" wx:for="{{selectedProductType}}" wx:key="unique">{{item.name}}</view>
+    </scroll-view>
+    <view class="ba-producttype-arrow"></view>
+  </view>
+  
+  <view class="ba-input-wrap">
+
+    <view class="input-item">
+      <text>我的姓名：</text>
+      <input class="ba-input" placeholder-class="ba-input-placeholder" type="text" value="{{name}}" bindinput="onInputName" placeholder="请输入您的真实姓名"/>
+    </view>
+
+    <view class="input-item">
+      <text>公司名称：</text>
+      <input class="ba-input" placeholder-class="ba-input-placeholder" type="text" value="{{company}}" bindinput="onInputCompany" placeholder="请输入您的公司名称"/>
+    </view>
+
+    <view class="input-item">
+      <text>手机号码：</text>
+      <input class="ba-input" placeholder-class="ba-input-placeholder" type="text" value="{{phone}}" bindinput="onInputPhone" placeholder="请输入您的手机号码"/>
+      <view wx:if="{{!isCodeDisabled}}" class="get-code" bindtap="onSendSms">{{codeText}}</view>
+      <view wx:else class="get-code get-code-disabled">{{codeText}}</view>
+    </view>
+
+    <view class="input-item" style="border-bottom:0;">
+      <text>验证码：</text>
+      <input class="ba-input" placeholder-class="ba-input-placeholder" type="text" value="{{code}}" bindinput="onInputCode" placeholder="请输入手机验证码"/>
+    </view>
+
+  </view>
+
+  <view class="ba-save-wrap" bindtap="onSaveAuthorized">保存</view>
+
+</view>
+
+<view class="filter-mask" bindtap="onCloseFilterPanel" animation="{{filterMaskAnim}}" style="display:{{filterMaskDisplay}};"></view>
+<view class="filter-panel" animation="{{filterPanelAnim}}">
+  <view class="fp-wrap">
+    <view class="type-item-title">选择关注的一级品类</view>
+    <view class="type-item-wrap clearfix" >
+      <block wx:for="{{allProductType}}" wx:key="unique">
+        <view wx:if="{{item.isSelected}}" class="type-item type-item-selected" data-id="{{item.id}}" bindtap="onUnselectType">{{item.name}}</view>
+        <view wx:else class="type-item" data-id="{{item.id}}" bindtap="onSelectType">{{item.name}}</view>
+      </block>
+    </view>
+  </view>
+
+  <view class="fp-confirm-wrap" bindtap="onCloseFilterPanel">确认</view>
+</view>

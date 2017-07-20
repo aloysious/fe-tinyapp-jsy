@@ -1,0 +1,29 @@
+<!--pages/statusTerminate/statusTerminate.wxml-->
+<view class="container">
+  <view class="ca-info-wrap">
+    <view class="ca-info-img">
+      <image src="{{avatar}}"></image>
+    </view>
+    <view class="ca-info-main">
+      <view wx:if="{{title}}" class="ca-info-title">{{title}}</view>
+      <view class="ca-info-date">更改日期：{{today}}</view>
+    </view>
+    <view class="ca-info-status" style="color: {{statusColor}};">{{statusText}}</view>
+  </view>
+  
+  <view class="ca-info-tips">
+    目前需求处于“{{statusText}}”，请填写终止响应需求的理由。终止申请需求审核，审核通过后的需求将不能再更改状态和留言。
+  </view>
+
+  <view class="ca-info-content">
+    <textarea class="ca-textarea" placeholder-class="ca-textarea-placeholder" placeholder="请填写终止响应需求的理由..." bindinput="onInputContent" />
+  </view>
+
+</view>
+
+<view class="ca-banner-wrap">
+  <view class="ca-banner-submit" bindtap="onSubmitReason">
+    <view class="banner-submit-text">提交申请</view>
+    <view class="banner-submit-icon"></view>
+  </view>
+</view>

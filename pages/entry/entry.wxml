@@ -1,0 +1,42 @@
+<block wx:if="{{!isHidePage}}" class="wrap">
+<view class="container">
+  <!--
+  <view class="entry-banner">
+    <view class="entry-banner-logo"></view>
+    <view class="entry-banner-slogan">轻松采购，用闪采</view>
+  </view>
+  -->
+
+  <view class="entry-banner">
+    <swiper class="swiper" indicator-dots="true"
+  autoplay="true" interval="5000" duration="500" circular="true">
+      <block wx:for="{{imgUrls}}" wx:key="unique">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" mode="aspectFill" data-index="{{index}}" bindtap="onTapSlider"/>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+    <view class="buyer-wrap" bindtap="onSelectRole" data-type="0">
+      <view class="buyer-text-wrap">
+        我是采购<text></text>
+      </view>
+      <view class="buyer-text-sub">I'm a purchaser</view>
+    </view>
+
+    <view class="skuer-wrap" bindtap="onSelectRole" data-type="1">
+      <view class="skuer-text-wrap">
+        我是SKU经理<text></text>
+      </view>
+      <view class="buyer-text-sub">I'm a SKU manager</view>
+    </view>
+
+    <navigator url="/pages/qa/qa" hover-class="none">
+      <view class="qa-wrap">
+        <text></text>什么是闪采？
+      </view>
+    </navigator>
+
+</view>
+</block>

@@ -1,0 +1,73 @@
+.footer-wrap {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  padding: 10rpx 0;
+  border-top: 1rpx solid #cccccc;
+  background-color: #fff;
+}
+
+.footer-item {
+  flex: 1;
+  text-align: center;
+}
+
+.footer-item .nav-icon {
+  width: 50rpx;
+  height: 50rpx;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin: auto;
+}
+
+.footer-item .nav-icon-req {
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/btn_tabbar_my_nor.png);
+}
+
+.footer-item-selected .nav-icon-req {
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/btn_tabbar_my_foc.png);
+}
+
+.footer-item .nav-icon-per {
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/btn_tabbar_me_nor.png);
+}
+
+.footer-item-selected .nav-icon-per {
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/btn_tabbar_me_foc.png);
+}
+
+.footer-item .nav-text {
+  font-size: 20rpx;
+  line-height: 34rpx;
+  height: 28rpx;
+  color: #767676;
+}
+
+.footer-item-selected .nav-text {
+  color: #4285F4;
+}
+
+.nav-icon-pub {
+  width: 136rpx;
+  height: 115rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/btn_tabbar_put_nor.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin: auto;
+  margin-top: -24rpx;
+}
+
+.nav-icon-match {
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/btn_tabbar_qd.png);
+}
+
+.nav-text-pub {
+  font-size: 20rpx;
+  line-height: 34rpx;
+  height: 28rpx;
+  color: #fff;
+  margin-top: -38rpx;
+}

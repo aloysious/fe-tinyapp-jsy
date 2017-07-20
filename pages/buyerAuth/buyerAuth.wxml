@@ -1,0 +1,31 @@
+<!--pages/buyerAuth/buyerAuth.wxml-->
+<view class="container">
+
+  <view class="ba-input-wrap">
+
+    <view class="input-item">
+      <text>我的姓名：</text>
+      <input class="ba-input" placeholder-class="ba-input-placeholder" type="text" value="{{name}}" bindinput="onInputName" placeholder="请输入您的真实姓名"/>
+    </view>
+
+    <view class="input-item">
+      <text>公司名称：</text>
+      <input class="ba-input" placeholder-class="ba-input-placeholder" type="text" value="{{company}}" bindinput="onInputCompany" placeholder="请输入您的公司名称"/>
+    </view>
+
+    <view class="input-item">
+      <text>手机号码：</text>
+      <input class="ba-input" placeholder-class="ba-input-placeholder" type="text" value="{{phone}}" bindinput="onInputPhone" placeholder="请输入您的手机号码"/>
+      <view wx:if="{{!isCodeDisabled}}" class="get-code" bindtap="onSendSms">{{codeText}}</view>
+      <view wx:else class="get-code get-code-disabled">{{codeText}}</view>
+    </view>
+
+    <view class="input-item" style="border-bottom:0;">
+      <text>验证码：</text>
+      <input class="ba-input" placeholder-class="ba-input-placeholder" type="text" value="{{code}}" bindinput="onInputCode" placeholder="请输入手机验证码"/>
+    </view>
+
+  </view>
+
+  <view class="ba-save-wrap" bindtap="onSaveAuthorized">保存</view>
+</view>

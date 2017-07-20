@@ -1,0 +1,27 @@
+<!--pages/qa/qa.wxml-->
+<view class="qa-wrap">
+  <view class="qa-title">
+    什么是闪采？
+  </view>
+  <view class="qa-content">
+    <text>闪采是一个微信小程序，主要应用于酒店和餐饮连锁行业B2B供应链采购。连锁企业的采购人员可以在此发布个性化的采购需求。闪采平台专业的SKU经理会第一时间响应需求。双方通过闪采平台持续进行需求沟通、订单确认、生产、物流跟踪等。平台可对需求的全生命周期进行完善的留痕管理，让你从多维度监控和保障需求的有效推进和质量控制。</text>
+  </view>
+</view>
+
+<view class="qa-wrap">
+  <view class="qa-title">
+    如何成为采购客户？
+  </view>
+  <view class="qa-content">
+    <text>访问闪采小程序，选择“我是采购”，你就可以成为采购客户。你可以一键式发布需求，并对已经发布的需求进行管理。你也可以进行实名绑定，方便后续的需求发布和身份检索。</text>
+  </view>
+</view>
+
+<view class="qa-wrap">
+  <view class="qa-title">
+    如何成为SKU经理？
+  </view>
+  <view class="qa-content">
+    <text>SKU经理是供应链企业的销售人员，负责响应采购客户的需求。闪采平台对SKU经理的服务质量有严格要求，平台上的SKU经理都是经过闪采团队严格甄选的。SKU经理必须进行实名绑定后，才能查询和响应需求。实名绑定时输入的实名信息必须匹配平台的SKU经理库中信息才能绑定成功。</text>
+  </view>
+</view>
