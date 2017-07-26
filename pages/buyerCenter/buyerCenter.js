@@ -83,6 +83,12 @@ Page({
     });
   },
 
+  onToBuyerSkuer: function() {
+    wx.navigateTo({
+      url: '../buyerSkuer/buyerSkuer',
+    })
+  },
+
   onToBuyerFollow: function() {
     wx.navigateTo({
       url: '../buyerFollow/buyerFollow',

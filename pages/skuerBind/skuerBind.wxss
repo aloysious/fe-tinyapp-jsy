@@ -1,0 +1,120 @@
+/* pages/skuerBind/skuerBind.wxss */
+page {
+  background-color: #fff;
+}
+
+.container {
+  overflow: hidden;
+}
+
+.info-wrap {
+  background-color: #DF443D;
+  width: 100%;
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+}
+
+.info-avatar {
+  width: 180rpx;
+  height: 180rpx;
+  margin: auto;
+  margin-bottom: 20rpx;
+  border-radius: 90rpx;
+  display: block;
+}
+
+.info-name {
+  width: 100%;
+  font-size: 32rpx;
+  color: #fff;
+  line-height: 42rpx;
+  text-align: center;
+  margin-bottom: 15rpx;
+}
+
+.info-role {
+  height: 35rpx;
+  opacity: 0.8; 
+  color: #fff;
+  font-size: 22rpx;
+  text-align: center;
+  margin-bottom: 10rpx;
+}
+
+.info-role text {
+  border: 1rpx solid #FFFFFF;
+  border-radius: 22rpx;
+  line-height: 35rpx;
+  padding: 6rpx 15rpx;
+}
+
+.info-contact,
+.info-company {
+  width: 100%;
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 32rpx;
+  text-align: center;
+  opacity: 0.8;
+}
+
+.buyer-wrap,
+.skuer-wrap,
+.courier-wrap {
+  width: 690rpx;
+  height: 284rpx;
+  margin: 40rpx auto 0 auto;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.buyer-wrap {
+  background-image: url(http://jsy-1253427581.cossh.myqcloud.com/bg_purchaser.png);
+}
+
+.skuer-wrap {
+  background-image: url(http://jsy-1253427581.cossh.myqcloud.com/bg_sku.png);
+}
+
+.courier-wrap {
+  background-image: url(http://jsy-1253427581.cossh.myqcloud.com/bg_courier.png);
+}
+
+.buyer-text-wrap,
+.skuer-text-wrap {
+  margin: auto;
+  margin-top: 113rpx;
+  font-size: 40rpx;
+  color: #FFFFFF;
+  line-height: 50rpx;
+  text-align: center;
+}
+
+.buyer-text-wrap text,
+.skuer-text-wrap text{
+  width: 11rpx;
+  height: 17rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/bg_purchaser_arrow.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin-left: 16rpx;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.buyer-text-sub,
+.skuer-text-sub {
+  opacity: 0.5;
+  font-size: 24rpx;
+  color: #FFFFFF;
+  line-height: 36rpx;
+  text-align: center;
+}
+
+.qa-wrap {
+  margin-top: 40rpx;
+  color: #DF443D;
+  font-size: 24rpx;
+  text-align: center;
+  opacity: 0.6;
+}

@@ -90,7 +90,7 @@
 
 .banner-submit-text {
   font-size: 28rpx;
-  color: #4285F4;
+  color: #DF443D;
   line-height: 48rpx;
   display: inline-block;
   margin-right: 20rpx;
@@ -100,7 +100,7 @@
 .banner-submit-icon {
   width: 34rpx;
   height: 34rpx;
-  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_ly_fly_nor.png);
+  background-image: url(http://jsy-1253427581.cossh.myqcloud.com/ic_ly_fly_nor.png);
   background-repeat: no-repeat;
   background-size: 100%;
   display: inline-block;

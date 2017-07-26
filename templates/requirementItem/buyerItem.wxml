@@ -9,10 +9,10 @@
         {{title}} <text wx:if="{{amount}}" class="ri-info-sep">|</text> <text wx:if="{{amount}}" class="ri-info-amount">{{amount}}件</text>
       </view>
       <view class="ri-info-detail ri-info-date">
-        发布时间：{{publishTime}}
+        期望到货：{{deliveryTime}} | 批 ¥{{tradeTotalPrice}}
       </view>
       <view class="ri-info-detail ri-info-skuer" wx:if="{{status != '0'}}">
-        sku经理：{{skuerName}}<block wx:if="{{skuerCompany}}"> | {{skuerCompany}}</block>
+        供应商：{{skuerName}}<block wx:if="{{skuerContact}}"> | {{skuerContact}}</block>
       </view>
     </view>
     <view class="ri-more">

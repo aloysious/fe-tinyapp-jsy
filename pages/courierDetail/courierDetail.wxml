@@ -1,0 +1,123 @@
+<!--pages/detail/detail.wxml-->
+<view class="container">
+  
+  <view class="bd-top-wrap">
+    <view class="bd-title-wrap">
+      <view class="bd-title-left">
+        <view wx:if="{{extInfo.productName}}" class="bd-title-main">{{extInfo.productName}}</view>
+        <view class="bd-title-time">订单发布于{{baseInfo.publishTime}}</view>
+      </view>
+      <view wx:if="{{baseInfo.relatedRole == 0 && baseInfo.status == '0'}}" class="remove-btn" bindtap="onRemoveRequirement"></view>
+      <view wx:if="{{baseInfo.status > '3'}}" class="bd-title-right">
+        <view class="bd-title-status" style="color: {{baseInfo.statusColor}};">{{baseInfo.statusText}}</view>
+      </view>
+    </view>
+    <scroll-view wx:if="{{baseInfo.status <= '3'}}" scroll-x="true" class="bd-status-scroll" scroll-left="{{scrollLeft}}" scroll-with-animation="true">
+      <view class="status-item-wrap">
+      <block wx:for="{{statusList}}" wx:key="unique">
+        <block wx:if="{{item.statusId > '-1' && item.statusId < baseInfo.status}}">
+          <view class="status-item status-item-done">
+            <view class="status-item-num"><text></text></view>
+            <view class="status-item-text">{{item.statusText}}</view>
+          </view>
+        </block>
+        <block wx:elif="{{item.statusId == baseInfo.status}}">
+          <view class="status-item">
+            <view class="status-item-num">{{index}}</view>
+            <view class="status-item-text">{{item.statusText}}</view>
+          </view>
+        </block>
+        <block wx:elif="{{item.statusId < '4' && item.statusId > baseInfo.status}}">
+          <view class="status-item status-item-future">
+            <view class="status-item-num">{{index}}</view>
+            <view class="status-item-text">{{item.statusText}}</view>
+          </view>
+        </block>
+      </block>
+      </view>
+      <view class="progress-wrap">
+        <view class="progress-bar" style="width:{{progressBarWidth}}rpx;"></view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="bp-product-wrap">
+
+    <view class="product-title" bindtap="onOpenProductList">
+      <view class="bp-item-left bp-type-label">
+        <view class="bp-item-icon bd-desc-icon"></view>
+        <view class="bp-item-header">订单描述</view>
+      </view> 
+    </view>
+
+    <view class="description-content">
+      
+      <view wx:for="{{baseInfo.products}}" wx:key="unique" class="input-item prodcut-item">
+        <image class="product-image" src="{{item.productPicture}}" mode="aspectFill"></image>
+        <view class="product-info">
+          <view class="product-info-top">
+            <view class="product-info-name">{{item.productName}}</view>
+          </view>
+          <view class="product-info-bottom">
+            <view class="product-price">
+              <view class="product-price-trade">单价 ¥{{item.salePrice}}</view>
+            </view>
+            <view class="product-count">
+              x {{item.count}}
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="input-item" style="height:auto;">
+        <text>合计：</text>
+        <view class="product-price-total">
+          <view class="product-price-trade">¥{{baseInfo.saleTotalPrice}}</view>
+        </view>
+      </view>
+
+    </view>
+
+  </view>
+
+  <view class="bd-info-wrap">
+    <view class="bd-info-item">
+      要货时间：{{baseInfo.deliveryTime}}
+    </view>
+    <view class="bd-info-item bd-info-item-more">
+      <view class="bd-item-left bd-item-left-more">收货人：</view>
+      <view class="bd-item-mid">{{baseInfo.deliveryInfo.name}}<text>|</text>{{baseInfo.deliveryInfo.contact}}</view>
+      <view class="bd-item-right bd-item-right-more bd-item-phone" bindtap="onTapContact" data-phone="{{baseInfo.deliveryInfo.contact}}"></view>
+    </view>
+    <view class="bd-info-item bd-info-item-more" data-latitude="{{baseInfo.deliveryInfo.latitude}}" data-longitude="{{baseInfo.deliveryInfo.longitude}}" bindtap="onNavToAddress">
+      <view class="bd-item-left bd-item-left-more">收货地址：</view>
+      <view class="bd-item-mid">{{baseInfo.deliveryInfo.address}}</view>
+      <view class="bd-item-right bd-item-right-more bp-item-arrow"></view>
+    </view>
+    <view class="bd-info-line"></view>
+  </view>
+
+  <view wx:if="{{extInfo.expresserName}}" class="bd-info-wrap">
+    <view wx:if="{{extInfo.expressCompany}}" class="bd-info-item">
+      物流公司：{{extInfo.expressCompany}}
+    </view>
+    <view wx:if="{{extInfo.expressCode}}" class="bd-info-item">
+      物流单号：{{extInfo.expressCode}}
+    </view>
+    <view class="bd-info-line"></view>
+  </view>
+
+  <view class="bd-info-wrap">
+    <view class="bd-info-item bd-info-item-more">
+      <view class="bd-item-left bd-item-left-more">供应商：</view>
+      <view class="bd-item-mid">{{extInfo.skuerName}}<block wx:if="{{extInfo.skuerCompany}}"><text>|</text>{{extInfo.skuerCompany}}</block></view>
+      <view class="bd-item-right bd-item-right-more bd-item-phone" bindtap="onTapContact" data-phone="{{extInfo.skuerContact}}"></view>
+    </view>
+    <view class="bd-info-line"></view>
+  </view>
+
+</view>
+
+<view wx:if="{{baseInfo.status == 2}}" class="bd-tool-wrap">
+  <view class="bd-tool-match" bindtap="onToShowQrcode">核销订单</view>
+</view>

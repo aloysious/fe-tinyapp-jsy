@@ -1,0 +1,15 @@
+<!--pages/skuerQrcode/skuerQrcode.wxml-->
+<view class="container">
+  <view class="info-wrap">
+    <image class="info-avatar" src="{{avatar}}" mode="aspectFill"></image>
+    <view class="info-name">{{name}}</view>
+    <view class="info-role"><text>1+N订货认证供应商</text></view>
+    <view class="info-contact">{{company}} | {{contact}}</view>
+  </view>
+
+  <view class="qrcode-wrap">
+    <image class="qrcode-pic" src="{{qrcode}}" mode="aspectFill"></image>
+  </view>
+
+  <button class="share-btn" open-type="share">分享名片</button>
+</view>

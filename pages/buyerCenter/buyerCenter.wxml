@@ -22,6 +22,15 @@
   </view>
 
   <view class="bc-func-wrap">
+    <view class="bc-item bc-skuer" bindtap="onToBuyerSkuer">
+      <view class="bc-item-left bc-follow-label">
+        <view class="bc-item-icon bc-skuer-icon"></view>
+        <view class="bc-item-header">我的供应商</view>
+      </view>
+      <view class="bc-item-right">
+        <view class="bc-item-arrow"></view>
+      </view>
+    </view>
     <view class="bc-item bc-follow" bindtap="onToBuyerFollow">
       <view class="bc-item-left bc-follow-label">
         <view class="bc-item-icon bc-follow-icon"></view>

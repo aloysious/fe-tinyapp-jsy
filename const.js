@@ -2,14 +2,11 @@
 var statusList = [
   { statusId: '-1', statusText: '全部' },
   { statusId: '0', statusText: '待响应' },
-  { statusId: '1', statusText: '需求确认中' },
-  { statusId: '2', statusText: '订单确认中' },
-  { statusId: '3', statusText: '订单进行中' },
-  { statusId: '4', statusText: '物流配送中' },
-  { statusId: '5', statusText: '结款中' },
-  { statusId: '6', statusText: '已完结' },
-  { statusId: '7', statusText: '中止审核中' },
-  { statusId: '8', statusText: '已中止' }
+  { statusId: '1', statusText: '备货中' },
+  { statusId: '2', statusText: '配送中' },
+  { statusId: '3', statusText: '已核销' },
+  { statusId: '4', statusText: '中止审核中' },
+  { statusId: '5', statusText: '已中止' }
 ];
 
 var statusListSimple = {
@@ -22,34 +19,22 @@ var statusListSimple = {
     color: '#F5A623'
   },
   '1': {
-    text: '需求确认中',
+    text: '备货中',
     color: '#0CD5D2'
   },
   '2': {
-    text: '订单确认中',
+    text: '配送中',
     color: '#236CE6'
   },
   '3': {
-    text: '订单进行中',
-    color: '#BC2FDD'
+    text: '已核销',
+    color: '#40DC3E'
   },
   '4': {
-    text: '物流配送中',
-    color: '#DB2020'
-  },
-  '5': {
-    text: '结款中',
-    color: '#40DC3E'
-  },
-  '6': {
-    text: '已完结',
-    color: '#40DC3E'
-  },
-  '7': {
     text: '中止审核中',
     color: '#CBCBCB'
   },
-  '8': {
+  '5': {
     text: '已中止',
     color: '#CBCBCB'
   }
@@ -80,7 +65,7 @@ var dayFormatList = [
   { chi: '星期六', eng: 'Saturday', simpleEng: 'Sat' }
 ];
 
-var reqHost = 'https://tiny.bys2b.com';
+var reqHost = 'https://tiny.bys2b.com/2';
 
 var APIS = {
   GET_EVENT_NOU:						 reqHost +'/getAnnouncementList',//公告数据
@@ -233,7 +218,61 @@ var APIS = {
   GET_RESPONSE_TIME_DATA: reqHost + '/getResponseTimeData',
 
   // 获取top3
-  GET_TOP_PARTNER: reqHost + '/getTopPartner'
+  GET_TOP_PARTNER: reqHost + '/getTopPartner',
+
+  /** 1+N新增接口 */
+  
+  // 获取所有商品列表
+  GET_ALL_PRODUCT_LIST: reqHost + '/getAllProductList',
+
+  // 获取sku经理的个人二维码
+  GET_SKUER_QRCODE: reqHost + '/getSkuerQrCode',
+
+  // 获取sku经理的个人信息
+  GET_SKUER_INFO_BY_ID: reqHost + '/getSkuerInfoById',
+
+  // 关联成为sku经理的采购客户
+  BUYER_BIND_SKUER: reqHost + '/buyerBindSkuer',
+
+  // 取消关联sku经理的采购客户
+  BUYER_UNBIND_SKUER: reqHost + '/buyerUnbindSkuer',
+
+  // 关联成为sku经理的配送人员
+  EXPRESSER_BIND_SKUER: reqHost + '/expresserBindSkuer',
+
+  // 取消关联sku经理的配送人员
+  EXPRESSER_UNBIND_SKUER: reqHost + '/expresserUnbindSkuer',
+
+  // 获取关联的sku经理信息
+  GET_MY_SKUER: reqHost + '/getMySkuer',
+
+  // 获取sku经理的客户列表
+  GET_MY_BUYER_LIST: reqHost + '/getMyBuyerList',
+
+  // 获取sku经理的配送人员列表
+  GET_MY_EXPRESSER_LIST: reqHost + '/getMyExpresserList',
+
+  // 取消关联采购客户
+  UNBIND_BUYER: reqHost + '/unbindBuyer',
+
+  // 取消关联配送人员
+  UNBIND_EXPRESSER: reqHost + '/unbindExpresser',
+
+  // 获取当前配送人员的实名绑定信息
+  GET_EXPRESSER_AUTHORIZED_INFO: reqHost + '/getExpresserAuthorizedInfo',
+
+  // 进行配送人员实名绑定
+  ADD_EXPRESSER_AUTHORIZED: reqHost + '/addExpresserAuthorized',
+
+  // 获取配送人员关联的sku经理列表
+  GET_MY_SKUER_LIST: reqHost + '/getMySkuerList',
+
+  // 状态置为发货
+  DELIVERY_REQUIREMENT: reqHost + '/deliveryRequirement',
+
+  // 配送人员的订单列表
+  GET_EXPRESSER_REQUIREMENT_LIST: reqHost + '/getExpresserRequirementList'
+
 	
 };
 

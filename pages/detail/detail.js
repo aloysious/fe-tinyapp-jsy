@@ -323,5 +323,17 @@ Page({
         });
       }
     }, true);
+  },
+
+  onNavToAddress: function(e) {
+    var latitude = e.currentTarget.dataset.latitude;
+    var longitude = e.currentTarget.dataset.longitude;
+    wx.openLocation({
+      latitude: +latitude,
+      longitude: +longitude,
+      scale: 28, // 缩放比例
+      name: '收货地址',
+      address: this.data.baseInfo.deliveryInfo.address || '', // 位置名
+    })
   }
 })

@@ -3,13 +3,6 @@
 
 <view class="container">
   <view class="filter-wrap">
-    <view class="filter-status">
-      <view class="filter-status-header">一级品类：</view>
-      <picker class="status-picker" range="{{typeList}}" value="{{typeIndex}}" range-key="name" bindchange="onChangeType">
-        <view class="status-picker-text">{{typeList[typeIndex].name}}</view>
-        <view class="status-picker-icon"></view>
-      </picker>
-    </view>
     <view class="filter-more" bindtap="{{filterMoreToggle}}"></view>
     <view class="filter-refresh" bindtap="onConfirmFilter"></view>
   </view>
@@ -35,16 +28,16 @@
   <view class="fp-item fp-time">
     <view class="fp-item-left fp-time-label">
       <view class="fp-item-icon fp-time-icon"></view>
-      <view class="fp-item-header">发布时间</view>
+      <view class="fp-item-header">到货时间</view>
     </view>
     <view class="fp-item-right">
-      <picker class="fp-picker fp-time-start" mode="date" value="{{publishTimeStart}}" start="2017-01-01" end="2099-12-31" bindchange="onChangeStartTime">
-        <view class="fp-item-text time-start-value">{{publishTimeStart}}</view>
+      <picker class="fp-picker fp-time-start" mode="date" value="{{deliveryTimeStart}}" start="2017-01-01" end="2099-12-31" bindchange="onChangeStartTime">
+        <view class="fp-item-text time-start-value">{{deliveryTimeStart}}</view>
       </picker>
       <view class="fp-item-arrow"></view>
       <view class="fp-time-sep">至</view>
-      <picker class="fp-picker fp-time-end" mode="date" value="{{publishTimeEnd}}" start="2017-01-01" end="2099-12-31" bindchange="onChangeEndTime">
-        <view class="fp-item-text time-end-value">{{publishTimeEnd}}</view>
+      <picker class="fp-picker fp-time-end" mode="date" value="{{deliveryTimeEnd}}" start="2017-01-01" end="2099-12-31" bindchange="onChangeEndTime">
+        <view class="fp-item-text time-end-value">{{deliveryTimeEnd}}</view>
       </picker>
       <view class="fp-item-arrow"></view>
     </view>
@@ -52,7 +45,7 @@
   <view class="fp-item fp-type">
     <view class="fp-item-left fp-type-label">
       <view class="fp-item-icon fp-type-icon"></view>
-      <view class="fp-item-header">需求状态</view>
+      <view class="fp-item-header">订单状态</view>
     </view>
     <view class="fp-item-right">
       <picker class="fp-picker fp-type-picker" range="{{statusList}}" value="{{statusIndex}}" range-key="statusText" bindchange="onChangeStatus">

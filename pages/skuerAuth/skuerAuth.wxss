@@ -124,7 +124,7 @@
   height: 90rpx;
   line-height: 90rpx;
   font-size: 28rpx;
-  color: #4285F4;
+  color: #DF443D;
   text-align: right;
   padding-right: 30rpx;
   box-sizing: border-box;
@@ -141,7 +141,7 @@
   text-align: center;
   background-color: #fff;
   font-size: 28rpx;
-  color: #F55523;
+  color: #80d2bb;
   font-weight: 500;
 }
 

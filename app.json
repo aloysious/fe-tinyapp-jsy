@@ -1,21 +1,43 @@
 {
   "pages":[
+ 
+    
     "pages/entry/entry",
+    "pages/detail/detail",
+
+    "pages/skuerBind/skuerBind",
+    "pages/buyerSkuer/buyerSkuer",
+
+    "pages/skuerCenter/skuerCenter",
+    
     "pages/buyerList/buyerList",
     "pages/commentAdd/commentAdd",
     "pages/buyerPublish/buyerPublish",
     "pages/buyerCenter/buyerCenter",
     "pages/buyerAuth/buyerAuth",
+    
     "pages/buyerFollow/buyerFollow",
     "pages/buyerStat/buyerStat",
     "pages/skuerList/skuerList",
     "pages/skuerMatch/skuerMatch",
-    "pages/detail/detail",
+    
     "pages/skuerResponse/skuerResponse",
-    "pages/skuerCenter/skuerCenter",
+    
+    
     "pages/skuerAuth/skuerAuth",
+    "pages/skuerQrcode/skuerQrcode",
+    "pages/skuerBuyer/skuerBuyer",
+    "pages/skuerCourier/skuerCourier",
     "pages/skuerFollow/skuerFollow",
     "pages/skuerStat/skuerStat",
+
+    "pages/courierList/courierList",
+    "pages/courierAuth/courierAuth",
+    "pages/courierSkuer/courierSkuer",
+    "pages/courierCenter/courierCenter",
+    "pages/courierDetail/courierDetail",
+    
+
     "pages/qa/qa",
     "pages/statusChange/statusChange",
     "pages/statusTerminate/statusTerminate",
@@ -24,7 +46,7 @@
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#4285f4",
+    "navigationBarBackgroundColor": "#DF443D",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle":"white"
   }

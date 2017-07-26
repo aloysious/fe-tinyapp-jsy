@@ -31,13 +31,24 @@ Page({
     deliveryDeadline: '',
     paymentDeadline: '',
     expressCompany: '',
-    expressCode: ''
+    expressCode: '',
+    expresserId: '',
+
+    filterMaskAnim: {},
+    filterPanelAnim: {},
+    filterMaskDisplay: 'none',
+
+    expresserList: [],
+    selectedName: '',
+    selectedContact: '',
+    hasMore: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.createAnim();
     this.setData({
       rid: options.rid,
       title: options.title,
@@ -109,6 +120,32 @@ Page({
     this.setData(d);
   },
 
+  onSubmitChange: function() {
+    var that = this;
+    request({
+      url: APIS.DELIVERY_REQUIREMENT,
+      data: {
+        sid: wx.getStorageSync('sid'),
+        rid: this.data.rid,
+        expressCompany: this.data.expressCompany,
+        expressCode: this.data.expressCode,
+        expresserId: this.data.expresserId
+      },
+      method: 'POST',
+      realSuccess: function (data) {
+        that.addComment();
+      },
+      loginCallback: that.onSubmitChange,
+      realFail: function (msg, errCode) {
+        wx.showToast({
+          title: msg
+        });
+      }
+    }, true, that);
+  },
+
+
+  /*
   onSubmitChange: function() {
     var that = this;
     var d = this.data;
@@ -204,8 +241,9 @@ Page({
         });
       });
   },
+  */
 
-  addComment: function(pictures) {
+  addComment: function() {
     var data = this.data;
     request({
       url: APIS.ADD_COMMENT,
@@ -213,7 +251,7 @@ Page({
         sid: wx.getStorageSync('sid'),
         rid: data.rid,
         content: '需求状态修改为“' + data.nextStatusText + '”。',
-        pictures: pictures
+        pictures: []
       },
       method: 'POST',
       realSuccess: function (data) {
@@ -222,7 +260,6 @@ Page({
       },
       loginCallback: this.addComment,
       realFail: function (msg, errCode) {
-        console.log(msg);
         wx.hideLoading();
         wx.navigateBack();
       }
@@ -237,5 +274,115 @@ Page({
     wx.navigateTo({
       url: '../statusTerminate/statusTerminate?rid=' + rid + '&title=' + title + '&status=' + status,
     })
+  },
+
+  createAnim: function () {
+    var that = this;
+    this.filterMaskAnim = wx.createAnimation({
+      duration: 400,
+      timingFunction: 'ease'
+    });
+    this.filterPanelAnim = wx.createAnimation({
+      duration: 400,
+      timingFunction: 'ease'
+    })
+  },
+
+  onOpenExpresserList: function () {
+    var that = this;
+    this.setData({
+      filterMaskDisplay: 'block'
+    });
+    this.filterMaskAnim.opacity(0.5).step();
+    this.filterPanelAnim.right('0rpx').step();
+    this.setData({
+      filterMaskAnim: this.filterMaskAnim.export(),
+      filterPanelAnim: this.filterPanelAnim.export()
+    });
+
+    setTimeout(function () {
+      that.setData({
+        filterOpenCls: 'filter-panel-open',
+        isFilterOpen: true,
+        filterMoreToggle: 'onCloseFilterPanel'
+      });
+    }, 400);
+
+    if (this.data.expresserList.length == 0) {
+      this.getExpresserList();
+    }
+  },
+
+  onCloseExpresserList: function () {
+    var that = this;
+    this.filterMaskAnim.opacity(0).step();
+    this.filterPanelAnim.right('-80%').step();
+    this.setData({
+      filterMaskAnim: this.filterMaskAnim.export(),
+      filterPanelAnim: this.filterPanelAnim.export()
+    });
+    this.setData({
+      filterOpenCls: ''
+    });
+    setTimeout(function () {
+      that.setData({
+        filterMaskDisplay: 'none',
+        isFilterOpen: false,
+        filterMoreToggle: 'onOpenFilterMore'
+      });
+    }, 400);
+  },
+
+  getExpresserList: function() {
+    var that = this;
+    request({
+      url: APIS.GET_MY_EXPRESSER_LIST,
+      data: {
+        sid: wx.getStorageSync('sid')
+      },
+      method: 'POST',
+      realSuccess: function (data) {
+        var filterList = [];
+        data.list.forEach(function(e, i) {
+          if (e.expresserContact) {
+            filterList.push(e);
+          }
+        });
+        that.setData({
+          expresserList: filterList,
+          hasMore: false
+        });
+        wx.hideLoading();
+      },
+      loginCallback: this.getMyExpresserList,
+      realFail: function (msg, code) {
+        wx.showToast({
+          title: msg
+        });
+      }
+    }, true);
+  },
+
+  goToCenter: function() {
+    wx.redirectTo({
+      url: '../skuerCenter/skuerCenter'
+    })
+  },
+
+  onSelectExpresser: function(e) {
+    var id = e.currentTarget.dataset.id;
+    var list = this.data.expresserList;
+    for(var i = 0, j = list.length; i < j; i++) {
+      if (id == list[i].expresserId) {
+        this.setData({
+          expresserId: list[i].expresserId,
+          selectedName: list[i].expresserName,
+          selectedContact: list[i].expresserContact
+        });
+        break;
+      }
+    }
+
+    this.onCloseExpresserList();
   }
 })

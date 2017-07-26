@@ -1,13 +1,14 @@
 /* pages/entry/entry.wxss */
 .container {
   background-color: #fff;
+  height: auto;
 }
 
 .entry-banner {
   height: 400rpx;
   /*padding-top: 44rpx;
   box-sizing: border-box;*/
-  background-color: #4285F4;
+  background-color: #DF443D;
 }
 
 .swiper {
@@ -43,7 +44,8 @@ swiper-item {
 }
 
 .buyer-wrap,
-.skuer-wrap {
+.skuer-wrap,
+.courier-wrap {
   width: 690rpx;
   height: 284rpx;
   margin: 40rpx auto 0 auto;
@@ -52,11 +54,15 @@ swiper-item {
 }
 
 .buyer-wrap {
-  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/bg_purchaser.png);
+  background-image: url(http://jsy-1253427581.cossh.myqcloud.com/bg_purchaser.png);
 }
 
 .skuer-wrap {
-  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/bg_sku.png);
+  background-image: url(http://jsy-1253427581.cossh.myqcloud.com/bg_sku.png);
+}
+
+.courier-wrap {
+  background-image: url(http://jsy-1253427581.cossh.myqcloud.com/bg_courier.png);
 }
 
 .buyer-text-wrap,
@@ -92,8 +98,8 @@ swiper-item {
 
 .qa-wrap {
   margin-top: 40rpx;
-  color: #4285f4;
+  color: #DF443D;
   font-size: 24rpx;
   text-align: center;
-  opacity: 0.8;
+  opacity: 0.6;
 }

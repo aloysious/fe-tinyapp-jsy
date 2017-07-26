@@ -30,9 +30,13 @@ Page({
         wx.redirectTo({
           url: '../buyerList/buyerList'
         });
-      } else {
+      } else if (this.roleType == '1') {
         wx.redirectTo({
           url: '../skuerList/skuerList'
+        });
+      } else {
+        wx.redirectTo({
+          url: '../courierList/courierList'
         });
       }
     }
@@ -75,9 +79,13 @@ Page({
           wx.redirectTo({
             url: '../buyerList/buyerList'
           });
-        } else {
+        } else if (that.roleType == '1') {
           wx.redirectTo({
             url: '../skuerList/skuerList'
+          });
+        } else {
+          wx.redirectTo({
+            url: '../courierList/courierList'
           });
         }
       },

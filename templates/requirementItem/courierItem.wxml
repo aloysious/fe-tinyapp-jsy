@@ -1,0 +1,19 @@
+<template name="courierItem">
+  <view class="ri-wrap">
+    <view class="ri-avatar">
+      <image src="{{skuerAvatar}}"></image>
+      <view wx:if="{{hasNewComment}}" class="ri-newmsg"></view>
+    </view>
+    <view class="ri-info" data-rid="{{rid}}" bindtap="onToDetail">
+      <view class="ri-info-title">
+        {{title}} <text wx:if="{{amount}}" class="ri-info-sep">|</text> <text wx:if="{{amount}}" class="ri-info-amount">{{amount}}件</text>
+      </view>
+      <view class="ri-info-detail ri-info-date">
+        收货人：{{deliveryInfo.name}} | 期望到货时间：{{deliveryTime}}
+      </view>
+      <view class="ri-info-detail ri-info-skuer" wx:if="{{status != '0'}}">
+        供应商：{{skuerName}}<block wx:if="{{skuerContact}}"> | {{skuerCompany}}</block>
+      </view>
+    </view>
+  </view>
+</template>

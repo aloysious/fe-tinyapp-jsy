@@ -5,12 +5,12 @@
     <image src="{{avatar}}"></image>
     
     <view wx:if="{{isAuthorized}}" class="bc-info-middle">
-      <view class="bc-info-name">{{name}}<text>SKU经理</text></view>
+      <view class="bc-info-name">{{name}}<text>供应商</text></view>
       <view class="bc-info-phone">{{phone}}</view>
       <view class="bc-info-company">{{company}}</view>
     </view>
     <view wx:else class="bc-info-middle">
-      <view class="bc-info-name">{{name}}<text>SKU经理</text></view>
+      <view class="bc-info-name">{{name}}<text>供应商</text></view>
       <view class="bc-info-tips">您还未进行实名绑定</view>
     </view>
 
@@ -22,6 +22,33 @@
   </view>
 
   <view class="bc-func-wrap">
+    <view class="bc-item bc-qrcode" bindtap="onToSkuerQrCode">
+      <view class="bc-item-left bc-follow-label">
+        <view class="bc-item-icon bc-qrcode-icon"></view>
+        <view class="bc-item-header">我的名片</view>
+      </view>
+      <view class="bc-item-right">
+        <view class="bc-item-arrow"></view>
+      </view>
+    </view>
+    <view class="bc-item bc-buyer" bindtap="onToSkuerBuyer">
+      <view class="bc-item-left bc-follow-label">
+        <view class="bc-item-icon bc-buyer-icon"></view>
+        <view class="bc-item-header">我的客户</view>
+      </view>
+      <view class="bc-item-right">
+        <view class="bc-item-arrow"></view>
+      </view>
+    </view>
+    <view class="bc-item bc-courier" bindtap="onToSkuerCourier">
+      <view class="bc-item-left bc-follow-label">
+        <view class="bc-item-icon bc-courier-icon"></view>
+        <view class="bc-item-header">我的配送人员</view>
+      </view>
+      <view class="bc-item-right">
+        <view class="bc-item-arrow"></view>
+      </view>
+    </view>
     <view class="bc-item bc-follow" bindtap="onToSkuerFollow">
       <view class="bc-item-left bc-follow-label">
         <view class="bc-item-icon bc-follow-icon"></view>

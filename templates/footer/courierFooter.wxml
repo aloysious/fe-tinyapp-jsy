@@ -1,0 +1,17 @@
+<template name="courierFooter">
+  <view class="footer-wrap">
+    <view class="footer-item {{listSelectedCls}}">
+      <navigator open-type="redirect" url="/pages/courierList/courierList" hover-class="none">
+        <view class="nav-icon nav-icon-req"></view>
+        <view class="nav-text">我的配送订单</view>
+      </navigator>
+    </view>   
+    
+    <view class="footer-item {{centerSelectedCls}}">
+      <navigator open-type="redirect" url="/pages/courierCenter/courierCenter" hover-class="none">
+       <view class="nav-icon nav-icon-per"></view>
+        <view class="nav-text">个人中心</view>
+      </navigator>
+    </view> 
+  </view>
+</template>

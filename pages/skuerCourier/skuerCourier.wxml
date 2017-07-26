@@ -1,0 +1,41 @@
+<!--pages/expresserSkuer/expresserSkuer.wxml-->
+<view class="container">
+  <view class="user-list-wrap">
+
+    <view wx:for="{{expresserList}}" wx:key="unique" class="user-item">
+  <view class="ri-wrap">
+    <view class="ri-avatar">
+      <image src="{{item.expresserAvatar}}"></image>
+    </view>
+    <view class="ri-info">
+      <view class="ri-info-title">
+        {{item.expresserName}}
+      </view>
+      <view wx:if="{{item.expresserContact}}" class="ri-info-detail ri-info-date">
+        {{item.expresserContact}}
+      </view>
+      <view wx:else class="ri-info-detail ri-info-date">非实名绑定用户</view>
+      <view wx:if="{{item.expresserCompany}}" class="ri-info-detail ri-info-skuer">
+        {{item.expresserCompany}}
+      </view>
+    </view>
+    <view class="ri-more">
+      <view class="ri-more-follow" data-id="{{item.expresserId}}" bindtap="onUnbindExpresser">
+        <view class="ri-more-match">取消关联</view>
+      </view>
+    </view>
+  </view>
+    </view>
+
+    <view wx:if="{{hasMore}}" class="loading-more">
+      <view class="loading-more-icon"></view>
+      <view class="loading-more-text">正在加载...</view>
+    </view>
+    <view class="list-empty-wrap" wx:if="{{expresserList.length == 0 && !hasMore}}">
+      <view class="list-empty-icon"></view>
+      <view class="list-empty-text">这里太干净了</view>
+      <view class="list-empty-text">快去发展你的采购人员吧</view>
+    </view>
+
+  </view>
+</view>

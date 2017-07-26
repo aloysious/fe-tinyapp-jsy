@@ -64,7 +64,6 @@ Page({
   },
 
   onTapChangeRole: function () {
-    console.log('haha');
     wx.showModal({
       title: '切换角色',
       content: '请确认是否需要切换角色？',
@@ -76,6 +75,31 @@ Page({
           })
         }
       }
+    });
+  },
+
+  onToSkuerQrCode: function() {
+    if (this.data.isAuthorized) {
+      var d = this.data;
+      wx.navigateTo({
+        url: '../skuerQrcode/skuerQrcode?avatar=' + d.avatar + '&name=' + d.name + '&company=' + d.company + '&contact=' + d.phone
+      });
+    } else {
+      wx.showToast({
+        title: '实名绑定后，才能生成个人名片',
+      });
+    }
+  },
+
+  onToSkuerBuyer: function() {
+    wx.navigateTo({
+      url: '../skuerBuyer/skuerBuyer'
+    });
+  },
+
+  onToSkuerCourier: function() {
+    wx.navigateTo({
+      url: '../skuerCourier/skuerCourier'
     });
   },
 

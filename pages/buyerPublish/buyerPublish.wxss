@@ -35,7 +35,7 @@
 
 .submit-btn {
   flex: 1;
-  background-color: #4285F4;
+  background-color: #DF443D;
   height: 100%;
   line-height: 98rpx;
   text-align: center;
@@ -118,28 +118,33 @@
   background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_fbxq_xq.png);
 }
 
+.bp-delivery-icon {
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_fbxq_call.png);
+}
+
 .bp-pub-icon {
   background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_fbxq_call.png);
 }
 
 .bp-description-wrap,
+.bp-product-wrap,
 .bp-publisher-wrap {
   background-color: #fff;
   margin-bottom: 21rpx;
 }
 
 .description-title,
+.product-title,
 .publisher-title {
   height: 100rpx;
   padding: 32rpx 30rpx 32rpx 0;
   margin-left: 30rpx;
-  border-bottom: 1rpx solid #e0e0e0;
   box-sizing: border-box;
   background-color: #fff;
 }
 
 .description-tpl-btn {
-  color: #4285F4;
+  color: #DF443D;
   font-size: 28rpx;
   font-weight: 500;
 }
@@ -151,7 +156,8 @@
   color: #1b1d1d;
   width: 100%;
   box-sizing: border-box;
-  border-bottom: 1rpx solid #e0e0e0;
+  height: 200rpx;
+  border-top: 1rpx solid #e0e0e0;
 }
 
 .bp-content-placeholder {
@@ -166,9 +172,16 @@
   width: 100%;
   height: 100rpx;
   box-sizing: border-box;
-  border-bottom: 1rpx solid #e0e0e0;
+  border-top: 1rpx solid #e0e0e0;
   display: flex;
   flex-direction: row;
+}
+
+.prodcut-item {
+  height: auto;
+  width: auto;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
 }
 
 .input-item-ext {
@@ -236,7 +249,7 @@
 .bp-pub-anth {
   margin: 22rpx 30rpx;
   height: 264rpx;
-  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_xqfb_bd_onepx.png);
+  background-image: url(http://jsy-1253427581.cossh.myqcloud.com/ic_xqfb_bd.png);
   background-repeat: repeat-y;
   background-size: 100%;
   border-radius: 4rpx;
@@ -259,7 +272,7 @@
 .pub-auth-icon {
   width: 143rpx;
   height: 73rpx;
-  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/pic_fbxq_smbd.png);
+  background-image: url(http://jsy-1253427581.cossh.myqcloud.com/pic_fbxq_smbd.png);
   background-repeat: no-repeat;
   background-size: 100%;
   margin: auto;
@@ -291,4 +304,241 @@
   display: inline-block;
   margin-left: 10rpx;
   vertical-align: middle;
+}
+
+.product-image {
+  width: 200rpx;
+  height: 200rpx;
+  background-color: #e0e0e0;
+  margin-right: 20rpx;
+  border: 1rpx solid #e0e0e0;
+  box-sizing: border-box;
+}
+
+.product-info {
+  flex: 1;
+}
+
+.product-info-top {
+  height: 114rpx;
+  overflow: hidden;
+}
+
+.product-info-name {
+  font-size: 28rpx;
+  line-height: 38rpx;
+}
+
+.product-info-bottom {
+  height: 86rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.product-price {
+  flex: 1;
+  margin-top: 16rpx;
+}
+
+.product-price-trade {
+  color: #DF443D;
+  font-size: 28rpx;
+  line-height: 38rpx;
+}
+
+.product-price-sell {
+  color: #b4b4b4;
+  font-size: 24rpx;
+  line-height: 38rpx;
+}
+
+.product-count {
+  width: 160rpx;
+  display: flex;
+  flex-direction: row;
+  padding-top: 46rpx;
+}
+
+.product-count-minus,
+.product-count-plus {
+  width: 40rpx;
+  height: 40rpx;
+  color: #767676;
+  font-size: 32rpx;
+  text-align: center;
+  line-height: 38rpx;
+  border: 1rpx solid #767676;
+  border-radius: 4rpx;
+  box-sizing: border-box;
+  font-weight: 200;
+}
+
+.product-count-input {
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 24rpx;
+  width: 80rpx;
+  text-align: center;
+}
+
+.product-price-total {
+  text-align: right;
+  padding: 20rpx 0;
+  flex: 1;
+  padding-right: 30rpx;
+}
+
+.product-price-total .product-price-trade {
+  font-size: 30rpx;
+  line-height: 42rpx;
+}
+
+.ca-picker {
+  flex: 1;
+}
+
+.ca-input {
+  flex: 1;
+  height: 90rpx;
+  line-height: 90rpx;
+}
+
+.ca-input-placeholder,
+.ca-input text {
+  color: #b4b4b4;
+}
+
+.ca-cal-icon {
+  width: 70rpx;
+  height: 70rpx;
+  margin: 15rpx 21rpx 0 5rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/btn_ggzt_calendar.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.bp-item-arrow-more {
+  margin-top: 35rpx;
+  margin-right: 30rpx;
+}
+
+.address-value {
+  flex: 1;
+  margin-right: 10rpx;
+  white-space: nowrap;  
+  text-overflow: ellipsis; 
+  overflow: hidden;
+}
+
+.address-value-placeholder {
+  color: #b4b4b4;
+}
+
+.filter-mask {
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #000000;
+  opacity: 0;
+  display: none;
+}
+
+.filter-panel {
+  width: 80%;
+  height: 100%;
+  background-color: #F1F2F4;
+  top: 0;
+  right: -80%;
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-panel-open {
+  z-index: 99999;
+}
+
+.fp-confirm-btn {
+  margin-top: 20rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 28rpx;
+  color: #DF443D;
+  text-align: center;
+  background-color: #fff;
+  font-weight: 500;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.product-list {
+  padding: 20rpx;
+  box-sizing: border-box;
+  flex: 1;
+  height: 100%;
+  padding-bottom: 120rpx;
+  padding-right: 0;
+}
+
+.product-list-item {
+  float: left;
+  width: 270rpx;
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+  background-color: #fff;
+  border: 1rpx solid #e0e0e0;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.pli-image {
+  background-color: #e0e0e0;
+  width: 268rpx;
+  height: 268rpx;
+}
+
+.pli-title {
+  padding: 10rpx;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  height: 96rpx;
+  overflow: hidden;
+  margin-bottom: 32rpx;
+}
+
+.pli-trade-price {
+  padding: 0 10rpx;
+  font-size: 28rpx;
+  color: #DF443D;
+  line-height: 34rpx;
+}
+
+.pli-sell-price {
+  padding: 0 10rpx;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  margin-bottom: 6rpx;
+}
+
+.pli-cart {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  right: 10rpx;
+  bottom: 10rpx;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_cart_normal.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.pli-cart-selected {
+   background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_cart_pressed.png);
 }

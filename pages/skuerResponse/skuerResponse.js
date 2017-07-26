@@ -92,7 +92,7 @@ Page({
           data: {
             sid: wx.getStorageSync('sid'),
             rid: data.rid,
-            content: '抢单成功，开始响应需求！\r\n' + data.content,
+            content: '抢单成功，开始响应订单需求！\r\n' + data.content,
             pictures: pictures
           },
           method: 'POST',

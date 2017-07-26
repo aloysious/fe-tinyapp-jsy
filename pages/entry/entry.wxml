@@ -20,21 +20,28 @@
 
     <view class="buyer-wrap" bindtap="onSelectRole" data-type="0">
       <view class="buyer-text-wrap">
-        我是采购<text></text>
+        我要订货<text></text>
       </view>
-      <view class="buyer-text-sub">I'm a purchaser</view>
+      <view class="buyer-text-sub">发布订单需求，直达供应商</view>
     </view>
 
     <view class="skuer-wrap" bindtap="onSelectRole" data-type="1">
       <view class="skuer-text-wrap">
-        我是SKU经理<text></text>
+        我是供货商<text></text>
       </view>
-      <view class="buyer-text-sub">I'm a SKU manager</view>
+      <view class="buyer-text-sub">实时响应与跟踪订单需求</view>
+    </view>
+
+    <view class="courier-wrap" bindtap="onSelectRole" data-type="2">
+      <view class="buyer-text-wrap">
+        我是配送人员<text></text>
+      </view>
+      <view class="buyer-text-sub">配送订单，二维码现场核销</view>
     </view>
 
     <navigator url="/pages/qa/qa" hover-class="none">
       <view class="qa-wrap">
-        <text></text>什么是闪采？
+        <text></text>什么是1+N订货小程序？
       </view>
     </navigator>
 

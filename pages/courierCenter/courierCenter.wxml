@@ -1,0 +1,61 @@
+<!--pages/CourierCenter/CourierCenter.wxml-->
+<view class="container">
+
+  <view class="bc-info-wrap" bindtap="onTapCourierAuth">
+    <image src="{{avatar}}"></image>
+    
+    <view wx:if="{{isAuthorized}}" class="bc-info-middle">
+      <view class="bc-info-name">{{name}}<text>配送人员</text></view>
+      <view class="bc-info-phone">{{phone}}</view>
+      <view class="bc-info-company">{{company}}</view>
+    </view>
+    <view wx:else class="bc-info-middle">
+      <view class="bc-info-name">{{name}}<text>配送人员</text></view>
+      <view class="bc-info-tips">您还未进行实名绑定</view>
+    </view>
+
+    <view class="bc-info-right">
+      <view wx:if="{{!isAuthorized}}" class="bc-info-authtext">实名绑定</view>
+      <view wx:else class="bc-info-authtext" style="opacity:0;">实名绑定</view>
+      <view class="bc-info-arrow"></view>
+    </view>
+  </view>
+
+  <view class="bc-func-wrap">
+    <view class="bc-item bc-skuer" bindtap="onToCourierSkuer">
+      <view class="bc-item-left bc-follow-label">
+        <view class="bc-item-icon bc-skuer-icon"></view>
+        <view class="bc-item-header">我的供应商</view>
+      </view>
+      <view class="bc-item-right">
+        <view class="bc-item-arrow"></view>
+      </view>
+    </view>
+    <view class="bc-item bc-stat" bindtap="onToCourierStat">
+      <view class="bc-item-left bc-stat-label">
+        <view class="bc-item-icon bc-stat-icon"></view>
+        <view class="bc-item-header">数据分析</view>
+      </view>
+      <view class="bc-item-right">
+        <view class="bc-item-arrow"></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bc-help-wrap">
+     <view class="bc-item bc-help" bindtap="onToCourierHelp">
+      <view class="bc-item-left bc-help-label">
+        <view class="bc-item-icon bc-help-icon"></view>
+        <view class="bc-item-header">常见问题与解答</view>
+      </view>
+      <view class="bc-item-right">
+        <view class="bc-item-arrow"></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bc-changerole-wrap" bindtap="onTapChangeRole">切换角色</view>
+
+  <import src="../../templates/footer/courierFooter.wxml"/>
+  <template is="courierFooter" data="{{...footer}}"></template>
+</view>

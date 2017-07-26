@@ -13,30 +13,38 @@ Page({
    * 页面的初始数据
    */
   data: {
-    typeList: [],
-    typeIndex: 0,
-    content: '',
-    productName: '',
-    amount: '',
-    property: '',
-    format: '',
-    perPrice: '',
-    deliveryDeadline: '',
+    products: [],
+    selectedProducts: [],
+    deliveryTime: '',
+    deliveryInfo: {
+      name: '',
+      contact: '',
+      addressBase: '',
+      addressMore: '',
+      latitude: 0,
+      longitude: 0
+    },
     moreInfo: '',
-    pictures: [],
+    totalTradePrice: 0,
+    totalSalePrice: 0,
+
     isAuthorized: true,
     publisherName: '',
     publisherContact: '',
     willInputContact: false,
     isUseTpl: false,
-    isShowAuth: true
+    isShowAuth: true,
+
+    filterMaskAnim: {},
+    filterPanelAnim: {},
+    filterMaskDisplay: 'none',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getAllProductType();
+    this.createAnim();
   },
 
   onShow: function() {
@@ -69,15 +77,23 @@ Page({
     }, true);
   },
 
-  getAllProductType: function () {
+  getAllProductList: function () {
     var that = this;
     request({
-      url: APIS.GET_ALL_PRODUCT_TYPE_LIST,
+      url: APIS.GET_ALL_PRODUCT_LIST,
       method: 'POST',
+      data: {
+        pageNum: 1,
+        pageSize: 9999
+      },
       realSuccess: function (data) {
         var list = data.list;
+        list = list.map(function(p) {
+          p.isSelected = false;
+          return p;
+        });
         that.setData({
-          typeList: list
+          products: list
         });
       },
       realFail: function (msg) {
@@ -87,13 +103,6 @@ Page({
         });
       }
     }, false);
-  },
-
-  onChangeType: function (e) {
-    var index = +e.detail.value;
-    this.setData({
-      typeIndex: index
-    });
   },
 
   onShowInputContact: function() {
@@ -108,93 +117,34 @@ Page({
     })
   },
 
-  onToggleTpl: function() {
+  onInputDeliveryInfoName: function(e) {
     this.setData({
-      isUseTpl: !this.data.isUseTpl
+      'deliveryInfo.name': util.trim(e.detail.value)
     });
   },
 
-  onAddPic: function() {
-    if (this.data.pictures.length >= 5) {
-      wx.showToast({
-        title: '最多只能上传5张图片！'
-      });
-      return;
-    }
-
-    var that = this;
-    var count = 5 - this.data.pictures.length;
-    wx.chooseImage({
-      count: count, // 最多可以选择的图片张数，默认9
-      sizeType: ['compressed'], // original 原图，compressed 压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
-      success: function (res) {
-        // success
-        var tempFilePaths = res.tempFilePaths;
-        var pathArr = that.data.pictures;
-        pathArr = pathArr.concat(tempFilePaths);
-        that.setData({
-          pictures: pathArr
-        });
-        //that.uploadPic(tempFilePaths[0]);
-      }
+  onInputDeliveryInfoContact: function(e) {
+    this.setData({
+      'deliveryInfo.contact': util.trim(e.detail.value)
     });
   },
 
-  onDeletePic: function(e) {
-    var index = e.target.dataset.index;
-    var paths = this.data.pictures;
-    paths.splice(index, 1);
+  onInputDeliveryInfoAddressMore: function(e) {
     this.setData({
-      pictures: paths
-    });
-  },
-
-  onInputContent: function(e) {
-    this.setData({
-      content: util.trim(e.detail.value)
-    });
-  },
-
-  onInputProductName: function(e) {
-    this.setData({
-      productName: util.trim(e.detail.value)
-    });
-  },
-
-  onInputAmount: function(e) {
-    this.setData({
-      amount: util.trim(e.detail.value)
-    });
-  },
-
-  onInputProperty: function (e) {
-    this.setData({
-      property: util.trim(e.detail.value)
-    });
-  },
-
-  onInputFormat: function(e) {
-    this.setData({
-      format: util.trim(e.detail.value)
-    });
-  },
-
-  onInputPerPrice: function(e) {
-    this.setData({
-      perPrice: util.trim(e.detail.value)
-    });
-  },
-
-  onInputDeliveryDeadline: function(e) {
-    this.setData({
-      deliveryDeadline: util.trim(e.detail.value)
+      'deliveryInfo.addressMore': util.trim(e.detail.value)
     });
   },
 
   onInputMoreInfo: function(e) {
     this.setData({
       moreInfo: util.trim(e.detail.value)
+    });
+  },
+
+  onChangeDeliveryTime: function (e) {
+    var d = e.detail.value;
+    this.setData({
+      deliveryTime: d
     });
   },
 
@@ -216,6 +166,19 @@ Page({
 
   onSubmit: function() {
     var that = this;
+    var selectedProducts = [];
+    this.data.products.forEach(function(p, i) {
+      if (p.isSelected) {
+        selectedProducts.push({
+          productId: p.productId,
+          productName: p.productName,
+          count: p.count
+        });
+      }
+    });
+    this.setData({
+      selectedProducts: selectedProducts
+    });
     var errorTips = this.validateSubmit();
     if (errorTips) {
       wx.showToast({
@@ -224,69 +187,45 @@ Page({
       return;
     }
 
-    var fnArr = [];
-    for (var i in this.data.pictures) {
-      fnArr.push(uploadPic(this.data.pictures[i]));
+    var contentArr = [];
+    var content = '';
+    this.data.selectedProducts.forEach(function(p, i) {
+      contentArr.push(p.productName + ' x' + p.count);
+    });
+    content = contentArr.join('; ');
+    if (this.data.moreInfo) {
+      content += '\r\n' + this.data.moreInfo;
     }
+
+    var data = this.data;
+    data.deliveryInfo.address = data.deliveryInfo.addressBase + ' ' + data.deliveryInfo.addressMore
+
     wx.showLoading({
       mask: true,
       title: '数据提交中'
     });
-    Q.all(fnArr)
-      .then(function (picUrls) {
-        var pictures = [];
-        for (var i in picUrls) {
-          pictures.push( picUrls[i]);
-        }
-        var content = '';
-        if (that.data.isUseTpl) {
-          var contentArr = [
-            '产品名称：' + that.data.productName,
-            '产品属性：' + that.data.property,
-            '包装规格：' + that.data.format,
-            '采购数量：' + that.data.amount,
-            '期望单价：' + that.data.perPrice + '元',
-            '交货时间：' + that.data.deliveryDeadline,
-            '更多说明：' + that.data.moreInfo
-          ];
-          content = contentArr.join('\r\n');
-        } else {
-          content = that.data.content;
-        }
-        var data = that.data;
-        request({
-          url: APIS.PUBLISH_REQUIREMENT,
-          data: {
-            sid: wx.getStorageSync('sid'),
-            productTypeId: data.typeList[data.typeIndex].id,
-            description: {
-              content: content,
-              pictures: pictures
-            },
-            publisherName: data.publisherName,
-            publisherContact: data.publisherContact
-          },
-          method: 'POST',
-          realSuccess: function (data) {
-            //wx.hideLoading();
-            that.addFirstComment(data.rid);
-            //wx.navigateBack();
-          },
-          loginCallback: that.onPublish,
-          realFail: function (msg, errCode) {
-            //wx.hideLoading();
-            wx.showToast({
-              title: msg
-            });
-          }
-        }, true, that);
-      })
-      .catch(function (e) {
-        //wx.hideLoading();
+    request({
+      url: APIS.PUBLISH_REQUIREMENT,
+      data: {
+        sid: wx.getStorageSync('sid'),
+        description: content,
+        products: data.selectedProducts,
+        deliveryTime: data.deliveryTime,
+        deliveryInfo: data.deliveryInfo,
+        publisherName: data.publisherName,
+        publisherContact: data.publisherContact
+      },
+      method: 'POST',
+      realSuccess: function (data) {
+        that.addFirstComment(data.rid);
+      },
+      loginCallback: that.onSubmit,
+      realFail: function (msg, errCode) {
         wx.showToast({
-          title: e.errMsg || '需求发布失败，请稍后重试！'
+          title: msg
         });
-      });
+      }
+    }, true, that);
 
   },
 
@@ -296,7 +235,7 @@ Page({
       data: {
         sid: wx.getStorageSync('sid'),
         rid: rid,
-        content: '成功发布了需求！',
+        content: '成功发布了订单！',
         pictures: []
       },
       method: 'POST',
@@ -314,21 +253,29 @@ Page({
 
   validateSubmit: function() {
     var d = this.data;
-    if (d.isUseTpl) {
-      if (!d.productName && !d.amount &&
-        !d.format && !d.property && !d.perPrice && !d.deliveryDeadline && !d.moreInfo) {
-          return '需求描述不能为空'
-        }
-    } else {
-      if (!d.content) {
-        return '需求描述不能为空'
-      }
+    if (d.selectedProducts.length == 0) {
+      return '请先选购要货商品'
+    }
+    if (!d.deliveryTime) {
+      return '请选择期望到货时间'
+    }
+    if (!d.deliveryInfo.name) {
+      return '收货人姓名不能为空'
+    }
+    if (!d.deliveryInfo.contact) {
+      return '收货人联系方式不能为空'
+    }
+    if (!d.deliveryInfo.addressBase) {
+      return '收货地址不能为空'
+    }
+    if (!validate.phone(d.deliveryInfo.contact)) {
+      return '收货人手机号码输入格式不正确'
     }
     if (!d.publisherName) {
       return '您的姓名不能为空'
     }
     if (!validate.phone(d.publisherContact)) {
-      return '请输入正确的手机号码'
+      return '您的手机号码输入格式不正确'
     }
     return '';
   },
@@ -339,12 +286,201 @@ Page({
     });
   },
 
-  onPreviewPictures: function(e) {
-    var picUrl = e.target.dataset.url;
+  onSelectAddress: function() {
+    var that = this;
+    wx.chooseLocation({
+      success: function(res) {
+        that.setData({
+          'deliveryInfo.addressBase': res.address,
+          'deliveryInfo.latitude': res.latitude,
+          'deliveryInfo.longitude': res.longitude
+        });
+      },
+    })
+  },
 
-    wx.previewImage({
-      current: picUrl, // 当前显示图片的链接，不填则默认为 urls 的第一张
-      urls: this.data.pictures
+  createAnim: function () {
+    var that = this;
+    this.filterMaskAnim = wx.createAnimation({
+      duration: 400,
+      timingFunction: 'ease'
+    });
+    this.filterPanelAnim = wx.createAnimation({
+      duration: 400,
+      timingFunction: 'ease'
+    })
+  },
+
+  onOpenProductList: function () {
+    var that = this;
+    this.setData({
+      filterMaskDisplay: 'block'
+    });
+    this.filterMaskAnim.opacity(0.5).step();
+    this.filterPanelAnim.right('0rpx').step();
+    this.setData({
+      filterMaskAnim: this.filterMaskAnim.export(),
+      filterPanelAnim: this.filterPanelAnim.export()
+    });
+
+    setTimeout(function () {
+      that.setData({
+        filterOpenCls: 'filter-panel-open',
+        isFilterOpen: true,
+        filterMoreToggle: 'onCloseFilterPanel'
+      });
+    }, 400);
+
+    if (this.data.products.length == 0) {
+      this.getAllProductList();
+    }
+  },
+
+  onCloseProductList: function () {
+    var that = this;
+    this.filterMaskAnim.opacity(0).step();
+    this.filterPanelAnim.right('-80%').step();
+    this.setData({
+      filterMaskAnim: this.filterMaskAnim.export(),
+      filterPanelAnim: this.filterPanelAnim.export()
+    });
+    this.setData({
+      filterOpenCls: ''
+    });
+    setTimeout(function () {
+      that.setData({
+        filterMaskDisplay: 'none',
+        isFilterOpen: false,
+        filterMoreToggle: 'onOpenFilterMore'
+      });
+    }, 400);
+  },
+
+  onToggleProduct: function(e) {
+    var id = e.target.dataset.id;
+    var products = this.data.products;
+    products.forEach(function(p, i) {
+      if (p.productId == id) {
+        if (p.isSelected) {
+          p.count = 0;
+        } else {
+          p.count = 1;
+        }
+        p.isSelected = !p.isSelected;
+      }
+    });
+    this.setData({
+      products: products
+    });
+    this.calTotalPrice();
+  },
+
+  onChangeProductCount: function(e) {
+    var v = e.detail.value;
+    var id = e.target.dataset.id;
+
+    if (isNaN(v)) {
+      wx.showToast({
+        title: '请输入数字！'
+      });
+      v = 1;
+    } else if (+v < 1) {
+      wx.showToast({
+        title: '商品数量不能再少了！'
+      });
+      v = 1;
+    } else if (+v >= 999) {
+      wx.showToast({
+        title: '一次采购商品不能超过999件！'
+      });
+      v = 999; 
+    } else {
+      v = Math.floor(+v);
+    }
+
+    var products = this.data.products;
+    products.forEach(function (p, i) {
+      if (p.productId == id) {
+        p.count = v;
+      }
+    });
+    this.setData({
+      products: products
+    });
+    this.calTotalPrice();
+  },
+
+  onMinusProduct: function(e) {
+    var that = this;
+    var id = e.target.dataset.id;
+
+    var products = this.data.products;
+    products.forEach(function (p, i) {
+      if (p.productId == id) {
+       if (p.count == 1) {
+         wx.showModal({
+           title: '删除商品',
+           content: '确认删除这个商品吗？',
+           success: function (res) {
+             if (res.confirm) {
+               console.log('haha');
+               p.isSelected = false;
+               p.count = 0;
+               that.setData({
+                 products: products
+               });
+               that.calTotalPrice();
+             }
+           }
+         });
+       } else {
+         p.count--;
+         that.setData({
+           products: products
+         });
+         that.calTotalPrice();
+       }
+      }
+    });
+  },
+
+  onPlusProduct: function(e) {
+    var that = this;
+    var id = e.target.dataset.id;
+
+    var products = this.data.products;
+    products.forEach(function (p, i) {
+      if (p.productId == id) {
+        if (p.count >= 999) {
+          wx.showToast({
+            title: '一次采购商品不能超过999件！'
+          });
+        } else {
+          p.count++;
+          that.setData({
+            products: products
+          });
+          that.calTotalPrice();
+        }
+      }
+    });
+  },
+
+  calTotalPrice: function() {
+    var products = this.data.products;
+    var totalTradePrice = 0;
+    var totalSalePrice = 0;
+
+    products.forEach(function(p, i) {
+      if (p.count) {
+        totalTradePrice += +p.tradePrice * p.count;
+        totalSalePrice += +p.salePrice * p.count;
+      }
+    });
+    this.setData({
+      totalTradePrice: totalTradePrice.toFixed(2),
+      totalSalePrice: totalSalePrice.toFixed(2)
     });
   }
+
 })

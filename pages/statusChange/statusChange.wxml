@@ -12,64 +12,13 @@
   </view>
   
   <view class="ca-info-tips">
-    目前需求处于“{{statusText}}”，填写下列信息后，可更改为“{{nextStatusText}}”状态
+    目前订单需求处于“{{statusText}}”，填写下列信息后，可更改为“{{nextStatusText}}”状态
   </view>
 
   <view class="ca-info-content">
 
     <!-- 需求确认中1 to 订单确认中2 -->
     <block wx:if="{{status == 1}}">
-      <view class="input-item">
-        <text>产品名称：</text>
-        <input class="ca-input" placeholder-class="ca-input-placeholder" type="text" placeholder="请输入产品名称" bindinput="onInputInfo" data-colume="productName"/>
-      </view>
-      <view class="input-item">
-        <text>包装规格：</text>
-        <input class="ca-input" placeholder-class="ca-input-placeholder" type="text" placeholder="请输入包装规格" bindinput="onInputInfo" data-colume="format"/>
-      </view>
-      <view class="input-item">
-        <text>采购单位：</text>
-        <input class="ca-input" placeholder-class="ca-input-placeholder" type="text" placeholder="请输入采购单位" bindinput="onInputInfo" data-colume="unit"/>
-      </view>
-      <view class="input-item">
-        <text>起订数量：</text>
-        <input class="ca-input" placeholder-class="ca-input-placeholder" type="text" placeholder="请输入起订数量" bindinput="onInputInfo" data-colume="amount"/>
-      </view>
-      <view class="input-item">
-        <text>采购单价：</text>
-        <input class="ca-input" placeholder-class="ca-input-placeholder" type="text" placeholder="请输入采购单价" bindinput="onInputInfo" data-colume="unitPrice"/>
-        <text class="unit-text">元</text>
-      </view>
-      <view class="ca-info-line"></view>
-    </block>
-
-    <!-- 订单确认中2 to 订单进行中3 -->
-    <block wx:elif="{{status == 2}}">
-      <view class="input-item">
-        <text>交货时间：</text>
-        <picker class="ca-picker ca-time-delivery" mode="date" value="{{deliveryDeadline}}" start="2017-01-01" end="2099-12-31" bindchange="onChangeDeliveryDeadline">
-           <view class="ca-input">
-            <block wx:if="{{deliveryDeadline}}">{{deliveryDeadline}}</block>
-            <block wx:else><text>请选择交货时间</text></block> 
-           </view>
-        </picker>
-        <view class="ca-cal-icon"></view>
-      </view>
-      <view class="input-item">
-        <text>结款时间：</text>
-        <picker class="ca-picker ca-time-delivery" mode="date" value="{{paymentDeadline}}" start="2017-01-01" end="2099-12-31" bindchange="onChangePaymentDeadline">
-           <view class="ca-input">
-            <block wx:if="{{paymentDeadline}}">{{paymentDeadline}}</block>
-            <block wx:else><text>请选择结款时间</text></block> 
-           </view>
-        </picker>
-        <view class="ca-cal-icon"></view>
-      </view>
-      <view class="ca-info-line"></view>
-    </block>
-
-    <!-- 订单进行中3 to 物流配送中4 -->
-    <block wx:elif="{{status == 3}}">
       <view class="input-item">
         <text>物流公司：</text>
         <input class="ca-input" placeholder-class="ca-input-placeholder" type="text" placeholder="请输入物流公司名称" bindinput="onInputInfo" data-colume="expressCompany"/>
@@ -78,44 +27,21 @@
         <text>物流单号：</text>
         <input class="ca-input" placeholder-class="ca-input-placeholder" type="text" placeholder="请输入物流单号" bindinput="onInputInfo" data-colume="expressCode"/>
       </view>
+      <view class="input-item input-item-more" bindtap="onOpenExpresserList">
+        <text>配送人员：</text>
+        <text wx:if="{{!expresserId}}" class="ca-input-placeholder">请选择配送人员</text>
+        <text wx:else class="expresser-value">{{selectedName}} | {{selectedContact}}</text>
+        <view class="ca-item-arrow"></view>
+      </view>
       <view class="ca-info-line"></view>
     </block>
 
+    
     <!-- 物流配送中4 to 结款中5 -->
 
     <!-- 结款中5 to 已完结6 -->
 
   </view>
-
-  <view wx:if="{{pictures.length > 0}}" class="ca-pic-wrap">
-    <view wx:for="{{pictures}}" wx:key="unique" class="pic-item">
-      <image class="ca-pic" mode="aspectFill" src="{{item}}" data-url="{{item}}" bindtap="onPreviewPictures"></image>
-      <view class="ca-pic-del" data-index="{{index}}" bindtap="onDeletePic"></view>
-    </view>
-  </view>
-
-  <block wx:if="{{pictures.length < 5}}">
-  <view class="ca-preview-wrap" bindtap="onAddPic">
-
-    <text></text>
-
-    <!-- 需求确认中1 to 订单确认中2 -->
-    <block wx:if="{{status == 1}}">添加产品图片</block>
-  
-    <!-- 订单确认中2 to 订单进行中3 -->
-    <block wx:elif="{{status == 2}}">添加采购协议图片</block>
-
-    <!-- 订单进行中3 to 物流配送中4 -->
-    <block wx:elif="{{status == 3}}">添加物流单据图片</block>
-
-    <!-- 物流配送中4 to 结款中5 -->
-    <block wx:elif="{{status == 4}}">添加到货凭证图片</block>
-
-    <!-- 结款中5 to 已完结6 -->
-    <block wx:elif="{{status == 5}}">添加到账凭证图片</block>
-
-  </view>
-  </block>
 
   <view class="ca-info-terminal" bindtap="onToTerminal">
     <text></text>我想终止需求响应
@@ -126,18 +52,47 @@
 <view class="ca-banner-wrap" bindtap="onSubmitChange">
 
   <!-- 需求确认中1 to 订单确认中2 -->
-  <block wx:if="{{status == 1}}">更改为“订单确认中”</block>
+  <block wx:if="{{status == 1}}">更改为“配送中”</block>
 
-  <!-- 订单确认中2 to 订单进行中3 -->
-  <block wx:elif="{{status == 2}}">更改为“订单进行中”</block>
+</view>
 
-  <!-- 订单进行中3 to 物流配送中4 -->
-  <block wx:elif="{{status == 3}}">更改为“物流配送中”</block>
+<view class="filter-mask" bindtap="onCloseExpresserList" animation="{{filterMaskAnim}}" style="display:{{filterMaskDisplay}};"></view>
+<view class="filter-panel {{filterOpenCls}}" animation="{{filterPanelAnim}}">
 
-  <!-- 物流配送中4 to 结款中5 -->
-  <block wx:elif="{{status == 4}}">更改为“结款中”</block>
+  <scroll-view class="product-list" scroll-y="true">
 
-  <!-- 结款中5 to 已完结6 -->
-  <block wx:elif="{{status == 5}}">更改为“已完结”</block>
+    <view wx:for="{{expresserList}}" wx:key="unique" wx:if="{{item.expresserContact}}" class="user-item" data-id="{{item.expresserId}}" bindtap="onSelectExpresser">
+  <view class="ri-wrap">
+    <view class="ri-avatar">
+      <image src="{{item.expresserAvatar}}"></image>
+    </view>
+    <view class="ri-info">
+      <view class="ri-info-title">
+        {{item.expresserName}}
+      </view>
+      <view wx:if="{{item.expresserContact}}" class="ri-info-detail ri-info-date">
+        {{item.expresserContact}}
+      </view>
+      <view wx:if="{{item.expresserCompany}}" class="ri-info-detail ri-info-skuer">
+        {{item.expresserCompany}}
+      </view>
+    </view>
+  </view>
+    </view>
+
+    <view wx:if="{{hasMore}}" class="loading-more">
+      <view class="loading-more-icon"></view>
+      <view class="loading-more-text">正在加载...</view>
+    </view>
+    <view class="list-empty-wrap" wx:if="{{expresserList.length == 0 && !hasMore}}">
+      <view class="list-empty-icon"></view>
+      <view class="list-empty-text">暂无可用的配送人员</view>
+      <view class="list-empty-text list-empty-text-tiny">您可以前往“个人中心－我的名片－分享”来关联配送人员，只有实名绑定的配送人员才能配送订单</view>
+
+      <view class="empty-btn" bindtap="goToCenter">前往个人中心</view>
+
+    </view>
+
+  </scroll-view>
 
 </view>

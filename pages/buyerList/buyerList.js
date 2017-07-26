@@ -22,15 +22,13 @@ Page({
     filterMaskAnim: {},
     filterPanelAnim: {},
     filterMaskDisplay: 'none',
-    publishTimeStart: '2017-01-01',
-    publishTimeEnd: '',
-    typeList: [],
-    typeIndex: 0,
+    deliveryTimeStart: '2017-01-01',
+    deliveryTimeEnd: '2027-12-31',
     isOnlyFollow: false,
     list: [
       /*
       {
-        publishTime: '2017-05-31',        // 发布时间
+        deliveryTime: '2017-05-31',        // 发布时间
         productType: '纸品',               // 所属一级品类名称
         status: 1,                        // 需求状态，0为待响应，1为需求确认中，2为订单确认中，3为订单进行中，4为物流配送中，5为结款中，6为已完结，7为已终止
         skuerName: '张三',                 // sku经理名字
@@ -43,7 +41,7 @@ Page({
         isFollow: true,                   // 是否关注了需求
         hasNewComment: true               // 是否有新的未读留言。判断逻辑：需要增加当前用户访问需求的最近时间记录表，取这个时间和需求最新的一次留言时间作比较，从而判断是否有新的未读留言。v1.1
       }, {
-        publishTime: '2017-05-31',        // 发布时间
+        deliveryTime: '2017-05-31',        // 发布时间
         productType: '纸品',               // 所属一级品类名称
         status: 1,                        // 需求状态，0为待响应，1为需求确认中，2为订单确认中，3为订单进行中，4为物流配送中，5为结款中，6为已完结，7为已终止
         skuerName: '张三',                 // sku经理名字
@@ -68,7 +66,7 @@ Page({
    */
   onLoad: function (options) {
     this.createAnim();
-    this.getCurrentDate();
+    //this.getCurrentDate();
     this.loading = false;
 
     // 处理兼容性
@@ -104,10 +102,9 @@ Page({
       data: {
         sid: wx.getStorageSync('sid'),
         status: data.statusList[data.statusIndex].statusId,
-        publishTimeStart: data.publishTimeStart,
-        publishTimeEnd: data.publishTimeEnd,
+        deliveryTimeStart: data.deliveryTimeStart,
+        deliveryTimeEnd: data.deliveryTimeEnd,
         isOnlyFollow: data.isOnlyFollow,
-        productTypeId: data.typeList[data.typeIndex] ? data.typeList[data.typeIndex].id : '',
         pageNum: data.pageNum,
         pageSize: data.pageSize
       },
@@ -120,7 +117,7 @@ Page({
         list = list.map(function(item) {
           item.statusText = statusListSimple[item.status + ''].text;
           item.statusColor = statusListSimple[item.status + ''].color;
-          item.skuerAvatar = item.skuerAvatar || 'http://bys2b-1253427581.cossh.myqcloud.com/ic_needs_shop.png';
+          item.skuerAvatar = item.status != '0' && item.skuerAvatar ? item.skuerAvatar : 'http://bys2b-1253427581.cossh.myqcloud.com/ic_needs_shop.png';
           item.title = item.title || item.description;
           return item;
         });
@@ -131,10 +128,6 @@ Page({
         });
         wx.hideLoading();
         that.loading = false;
-
-        if (that.data.typeList.length == 0) {
-          that.getAllProductType();
-        }
       },
       loginCallback: function() {
         that.loading = false;
@@ -158,10 +151,10 @@ Page({
       statusIndex: 0,
       typeIndex: 0,
       isOnlyFollow: false,
-      publishTimeStart: '2017-01-01',
+      deliveryTimeStart: '2017-01-01',
       hasMore: true
     });
-    this.getCurrentDate();
+    //this.getCurrentDate();
     this.getBuyerRequirementList();
   },
 
@@ -221,30 +214,6 @@ Page({
     }, 400);
   },
 
-  getAllProductType: function () {
-    var that = this;
-    request({
-      url: APIS.GET_ALL_PRODUCT_TYPE_LIST,
-      method: 'POST',
-      realSuccess: function (data) {
-        var list = data.list;
-        list.unshift({
-          id: '',
-          name: '全部'
-        });
-        that.setData({
-          typeList: list
-        });
-      },
-      realFail: function (msg) {
-        //wx.hideLoading();
-        wx.showToast({
-          title: msg
-        });
-      }
-    }, false);
-  },
-
   onCloseFilterPanel: function () {
     var that = this;
     this.filterMaskAnim.opacity(0).step();
@@ -268,21 +237,21 @@ Page({
   getCurrentDate: function() {
     var d = util.formatDate(new Date());
     this.setData({
-      publishTimeEnd: d
+      deliveryTimeEnd: d
     });
   },
 
   onChangeStartTime: function(e) {
     var d = e.detail.value;
     this.setData({
-      publishTimeStart: d
+      deliveryTimeStart: d
     });
   },
 
   onChangeEndTime: function (e) {
     var d = e.detail.value;
     this.setData({
-      publishTimeEnd: d
+      deliveryTimeEnd: d
     });
   },
 
