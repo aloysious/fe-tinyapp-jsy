@@ -20,6 +20,14 @@ function formatDate(date) {
   return [year, month, day].map(formatNumber).join('-')
 }
 
+function formatMonth(date) {
+  var year = date.getFullYear()
+  var month = date.getMonth() + 1
+
+
+  return [year, month].map(formatNumber).join('-')
+}
+
 function formatClock(date) {
   var hour = date.getHours()
   var minute = date.getMinutes()
@@ -106,6 +114,7 @@ function trim(str) {
 module.exports = {
   formatTime: formatTime,
   formatDate: formatDate,
+  formatMonth: formatMonth,
   formatClock: formatClock,
   getCalByDate: getCalByDate,
   inArray: inArray,

@@ -22,11 +22,10 @@ Page({
     }
 
     this.getRequirementCountData();
-    this.getResponseTimeData();
     this.getTopPartner();
   },
 
-  getRequirementCountData: function() {
+  getRequirementCountData: function () {
     var that = this;
     request({
       url: APIS.GET_REQUIREMENT_COUNT_DATA,
@@ -35,18 +34,13 @@ Page({
       },
       method: 'POST',
       realSuccess: function (data) {
-        if (data.totalCount == 0) {
-          wx.hideLoading();
-          return;
-        }
-
         that.setData({
           totalCount: data.totalCount
         });
 
         var dl = [];
-        data.dataList.forEach(function(v, i) {
-          v.format = function(d) {
+        data.dataList.forEach(function (v, i) {
+          v.format = function (d) {
             return v.data + '次，' + 100 * d + '%';
           };
           if (v.data != 0) {
@@ -74,11 +68,6 @@ Page({
       },
       method: 'POST',
       realSuccess: function (data) {
-        if (data.averageTime == 0) {
-          wx.hideLoading();
-          return;
-        }
-
         that.setData({
           averageTime: Math.round(data.averageTime / 60)
         });
@@ -104,8 +93,8 @@ Page({
     }, true);
   },
 
-  renderPie: function(cid, dl) {
-   var  chart = new wxCharts({
+  renderPie: function (cid, dl) {
+    var chart = new wxCharts({
       animation: true,
       canvasId: cid,
       type: 'pie',
@@ -116,7 +105,7 @@ Page({
     });
   },
 
-  getTopPartner: function() {
+  getTopPartner: function () {
     var that = this;
     request({
       url: APIS.GET_TOP_PARTNER,
@@ -125,11 +114,6 @@ Page({
       },
       method: 'POST',
       realSuccess: function (data) {
-        if (data.list.length == 0) {
-          wx.hideLoading();
-          return;
-        }
-
         that.setData({
           partnerList: data.list
         });
@@ -145,7 +129,7 @@ Page({
     }, true);
   },
 
-  onDialPhone: function(e) {
+  onDialPhone: function (e) {
     var phone = e.target.dataset.phone;
     wx.makePhoneCall({
       phoneNumber: phone

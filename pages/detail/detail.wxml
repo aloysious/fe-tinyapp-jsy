@@ -66,9 +66,12 @@
             <view class="product-info-name">{{item.productName}}</view>
           </view>
           <view class="product-info-bottom">
-            <view class="product-price">
+            <view class="product-price" style="margin-top:45rpx;">
+            <!--
               <view class="product-price-trade">批发价 ¥{{item.tradePrice}}</view>
               <view class="product-price-sell">建议零售价 ¥{{item.salePrice}}</view>
+              -->
+              <view class="product-price-trade">单价 ¥{{item.salePrice}}</view>
             </view>
             <view class="product-count">
               x {{item.count}}
@@ -80,8 +83,11 @@
       <view class="input-item" style="height:auto;">
         <text>合计：</text>
         <view class="product-price-total">
+        <!--
           <view class="product-price-trade">批发价 ¥{{baseInfo.tradeTotalPrice}}</view>
           <view class="product-price-sell">建议零售价 ¥{{baseInfo.saleTotalPrice}}</view>
+          -->
+          <view class="product-price-trade">¥{{baseInfo.saleTotalPrice}}</view>
         </view>
       </view>
 
@@ -182,7 +188,7 @@
   </block>
   <!-- relatedRole == -1， 如果用户是采购人员或者什么也不是，不能留言 -->
   <block wx:elif="{{baseInfo.relatedRole == -1 && ( roleType == 0 || roleType == -1 )}}">
-    <view class="bd-tool-empty" bindtap="onToEntry"><text></text>SKU经理实名绑定后可以抢单</view>
+    <view class="bd-tool-empty" bindtap="onToEntry"><text></text>供应商实名绑定后可以抢单</view>
   </block>
   <!-- relatedRole == -1， 如果用户是sku经理， 可以抢单 -->
   <block wx:elif="{{baseInfo.relatedRole == -1 || (baseInfo.relatedRole == 1 && baseInfo.status == 0)}}">
@@ -197,4 +203,13 @@
     <view wx:if="{{!baseInfo.isFollow}}" class="bd-tool-follow" bindtap="onToggleFollow"></view>
     <view wx:else class="bd-tool-follow bd-tool-follow-selected" bindtap="onToggleFollow"></view>
   </block>
+</view>
+
+
+<view class="fobidden-mask" animation="{{fobiddenMaskAnim}}" style="display:{{fobiddenMaskDisplay}};">
+  <view class="list-empty-wrap">
+        <view class="list-empty-icon"></view>
+        <view class="list-empty-text">无法查看订单详情</view>
+        <view class="list-empty-text" style="font-size:24rpx;">只有订单的发布者和供应商才能查看</view>
+      </view>
 </view>

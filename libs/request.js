@@ -34,11 +34,13 @@ function request(obj, needLogin = true, ctx) {
                     duration: 3000,
                     mask: true
                 });
+                /*
                 setTimeout(function() {
                     wx.navigateTo({
                     url: '../verify/verify'
                     });
                 }, 3000);
+                */
             } else if (d.errCode == '3002') {
                 wx.showToast({
                     title: '您的身份没有操作权限！',

@@ -3,24 +3,12 @@
 
   <view class="bs-wrap">
     <view class="bs-title-wrap">
-      <view class="bs-title">我一共发布了多少次订单需求？</view>
+      <view class="bs-title">我一共被指派了多少次配送订单？</view>
       <view class="bs-count">{{totalCount}}次</view>
     </view>
     <view class="bs-content-wrap">
       <view class="bs-main">
         <canvas canvas-id="requirementCanvas" class="canvas" style="height:300px"></canvas>
-      </view>
-    </view>
-  </view>
-
-  <view class="bs-wrap">
-    <view class="bs-title-wrap">
-      <view class="bs-title">我的订单需求平均多长时间得到响应？</view>
-      <view class="bs-count">{{averageTime}}小时</view>
-    </view>
-    <view class="bs-content-wrap">
-      <view class="bs-main">
-        <canvas canvas-id="timeCanvas" class="canvas" style="height:300px"></canvas>
       </view>
     </view>
   </view>

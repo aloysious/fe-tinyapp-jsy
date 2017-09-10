@@ -38,6 +38,9 @@ Page({
     filterMaskAnim: {},
     filterPanelAnim: {},
     filterMaskDisplay: 'none',
+
+    fobiddenMaskAnim: {},
+    fobiddenMaskDisplay: 'none',
   },
 
   /**
@@ -48,7 +51,38 @@ Page({
   },
 
   onShow: function() {
-    this.getBuyerAuthorizedInfo();
+    user.login(function () {
+      this.getMySkuer();
+      this.getBuyerAuthorizedInfo();
+    }, this, true);
+  },
+
+  getMySkuer: function() {
+    var that = this;
+    request({
+      url: APIS.GET_MY_SKUER,
+      data: {
+        sid: wx.getStorageSync('sid')
+      },
+      method: 'POST',
+      realSuccess: function (data) {
+        if (!data.skuerId) {
+          that.onOpenFobidden();
+        }
+        wx.hideLoading();
+      },
+      loginCallback: this.getMySkuerInfo,
+      realFail: function (msg, code) {
+        if (code == '0019') {
+          that.onOpenFobidden();
+          wx.hideLoading();
+        } else {
+          wx.showToast({
+            title: msg
+          });
+        }
+      }
+    }, true);
   },
 
   getBuyerAuthorizedInfo: function() {
@@ -308,7 +342,11 @@ Page({
     this.filterPanelAnim = wx.createAnimation({
       duration: 400,
       timingFunction: 'ease'
-    })
+    });
+    this.fobiddenMaskAnim = wx.createAnimation({
+      duration: 400,
+      timingFunction: 'ease'
+    });
   },
 
   onOpenProductList: function () {
@@ -334,6 +372,17 @@ Page({
     if (this.data.products.length == 0) {
       this.getAllProductList();
     }
+  },
+
+  onOpenFobidden: function() {
+    var that = this;
+    this.setData({
+      fobiddenMaskDisplay: 'block'
+    });
+    this.fobiddenMaskAnim.opacity(1).step();
+    this.setData({
+      fobiddenMaskAnim: this.fobiddenMaskAnim.export()
+    });
   },
 
   onCloseProductList: function () {

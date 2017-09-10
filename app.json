@@ -1,6 +1,5 @@
 {
   "pages":[
- 
     
     "pages/entry/entry",
     "pages/detail/detail",
@@ -22,6 +21,8 @@
     "pages/skuerMatch/skuerMatch",
     
     "pages/skuerResponse/skuerResponse",
+
+    "pages/pocket/pocket",
     
     
     "pages/skuerAuth/skuerAuth",
@@ -36,6 +37,10 @@
     "pages/courierSkuer/courierSkuer",
     "pages/courierCenter/courierCenter",
     "pages/courierDetail/courierDetail",
+    "pages/courierStat/courierStat",
+
+    "pages/consumerConfirm/consumerConfirm",
+    
     
 
     "pages/qa/qa",

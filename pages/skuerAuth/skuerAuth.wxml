@@ -1,14 +1,5 @@
 <!--pages/skuerAuth/skuerAuth.wxml-->
-<view class="container">
-
-  <view class="ba-producttype-wrap" bindtap="onOpenProductType">
-    <text>关注品类：</text>
-    <scroll-view scroll-x="true" class="ba-producttype-list">
-      <view class="ba-producttype-item" wx:for="{{selectedProductType}}" wx:key="unique">{{item.name}}</view>
-    </scroll-view>
-    <view class="ba-producttype-arrow"></view>
-  </view>
-  
+<view class="container"> 
   <view class="ba-input-wrap">
 
     <view class="input-item">
@@ -37,19 +28,4 @@
 
   <view class="ba-save-wrap" bindtap="onSaveAuthorized">保存</view>
 
-</view>
-
-<view class="filter-mask" bindtap="onCloseFilterPanel" animation="{{filterMaskAnim}}" style="display:{{filterMaskDisplay}};"></view>
-<view class="filter-panel" animation="{{filterPanelAnim}}">
-  <view class="fp-wrap">
-    <view class="type-item-title">选择关注的一级品类</view>
-    <view class="type-item-wrap clearfix" >
-      <block wx:for="{{allProductType}}" wx:key="unique">
-        <view wx:if="{{item.isSelected}}" class="type-item type-item-selected" data-id="{{item.id}}" bindtap="onUnselectType">{{item.name}}</view>
-        <view wx:else class="type-item" data-id="{{item.id}}" bindtap="onSelectType">{{item.name}}</view>
-      </block>
-    </view>
-  </view>
-
-  <view class="fp-confirm-wrap" bindtap="onCloseFilterPanel">确认</view>
 </view>

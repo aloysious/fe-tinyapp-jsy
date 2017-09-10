@@ -22,6 +22,15 @@
   </view>
 
   <view class="bc-func-wrap">
+    <view class="bc-item bc-stat" bindtap="onToPocket">
+      <view class="bc-item-left bc-stat-label">
+        <view class="bc-item-icon bc-stat-icon"></view>
+        <view class="bc-item-header">我的钱包</view>
+      </view>
+      <view class="bc-item-right">
+        <view class="bc-item-arrow"></view>
+      </view>
+    </view>
     <view class="bc-item bc-skuer" bindtap="onToBuyerSkuer">
       <view class="bc-item-left bc-follow-label">
         <view class="bc-item-icon bc-skuer-icon"></view>
@@ -31,19 +40,10 @@
         <view class="bc-item-arrow"></view>
       </view>
     </view>
-    <view class="bc-item bc-follow" bindtap="onToBuyerFollow">
+    <view class="bc-item bc-follow bc-last" bindtap="onToBuyerFollow">
       <view class="bc-item-left bc-follow-label">
         <view class="bc-item-icon bc-follow-icon"></view>
         <view class="bc-item-header">我的关注</view>
-      </view>
-      <view class="bc-item-right">
-        <view class="bc-item-arrow"></view>
-      </view>
-    </view>
-    <view class="bc-item bc-stat" bindtap="onToBuyerStat">
-      <view class="bc-item-left bc-stat-label">
-        <view class="bc-item-icon bc-stat-icon"></view>
-        <view class="bc-item-header">数据分析</view>
       </view>
       <view class="bc-item-right">
         <view class="bc-item-arrow"></view>

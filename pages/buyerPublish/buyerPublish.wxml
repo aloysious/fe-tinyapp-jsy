@@ -22,9 +22,12 @@
             <view class="product-info-name">{{item.productName}}</view>
           </view>
           <view class="product-info-bottom">
-            <view class="product-price">
+            <view class="product-price" style="margin-top:45rpx;">
+            <!--
               <view class="product-price-trade">批发价 ¥{{item.tradePrice}}</view>
               <view class="product-price-sell">建议零售价 ¥{{item.salePrice}}</view>
+              -->
+              <view class="product-price-trade">单价 ¥{{item.salePrice}}</view>
             </view>
             <view class="product-count">
               <view class="product-count-minus" data-id="{{item.productId}}" bindtap="onMinusProduct">－</view>
@@ -38,8 +41,11 @@
       <view class="input-item" style="height:auto;">
         <text>合计：</text>
         <view class="product-price-total">
+        <!--
           <view class="product-price-trade">批发价 ¥{{totalTradePrice}}</view>
           <view class="product-price-sell">建议零售价 ¥{{totalSalePrice}}</view>
+          -->
+          <view class="product-price-trade">¥{{totalSalePrice}}</view>
         </view>
       </view>
 
@@ -159,8 +165,11 @@
     <view wx:for="{{products}}" wx:key="unique" class="product-list-item">
       <image class="pli-image" src="{{item.productPic}}" mode="aspectFill"></image>
       <view class="pli-title">{{item.productName}}</view>
+      <!--
       <view class="pli-trade-price">批 ¥{{item.tradePrice}}</view>
       <view class="pli-sell-price">零 ¥{{item.salePrice}}</view>
+      -->
+      <view class="pli-trade-price" style="margin-bottom:5rpx;">¥{{item.salePrice}}</view>
       <view wx:if="{{!item.isSelected}}" class="pli-cart" data-id="{{item.productId}}" bindtap="onToggleProduct"></view>
       <view wx:else class="pli-cart pli-cart-selected" data-id="{{item.productId}}" bindtap="onToggleProduct"></view>
     </view>
@@ -169,4 +178,12 @@
   </scroll-view>
 
   <view class="fp-confirm-btn" bindtap="onCloseProductList">确定</view>
+</view>
+
+<view class="fobidden-mask" animation="{{fobiddenMaskAnim}}" style="display:{{fobiddenMaskDisplay}};">
+  <view class="list-empty-wrap">
+        <view class="list-empty-icon"></view>
+        <view class="list-empty-text">暂时无法发布订单</view>
+        <view class="list-empty-text" style="font-size:24rpx;">你还没有关联的供应商，请扫供应商身份码进行关联</view>
+      </view>
 </view>

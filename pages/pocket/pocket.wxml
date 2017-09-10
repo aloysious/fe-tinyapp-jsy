@@ -1,0 +1,52 @@
+<!--pages/pocket/pocket.wxml-->
+<view class="container">
+  <view class="amount-wrap">
+    <view class="amount-money">
+      余额<text>{{moneyLeft}}元</text>
+    </view>
+    <view class="amount-tool">
+      <view class="amount-get" bindtap="onGetCash">
+        <text>我要提现</text>
+      </view>
+      <view class="amount-more" bindtap="onOpenAmountMore">
+        <text>更多奖励</text>
+      </view>
+    </view>
+  </view>
+  <view class="filter-wrap">
+    <view class="filter-status">
+      <view class="filter-status-header">月份流水：</view>
+      <picker class="fp-picker fp-time-start" mode="date" value="{{statTime}}" fields="month" start="2017-01" end="2099-12" bindchange="onChangeStatTime">
+        <view class=".status-picker-text">{{statTime}}</view>
+        <view class="status-picker-icon"></view>
+      </picker>
+    </view>
+  </view>
+  <view class="list-wrap">
+    <scroll-view class="list-scroll-wrap" scroll-y="true">
+      <view wx:if="{{profitList.length == 0}}" class="profit-empty">该月份没有产生流水</view>
+      <view wx:for="{{profitList}}" wx:key="unique" class="list-item">
+        <view class="item-left">
+          <view class="item-title">{{item.profitDescription}}（{{item.pocketType}}）</view>
+          <view class="item-date">{{item.createAt}}</view>
+        </view>
+        <view class="item-right">{{item.revenueType == 0 ? '+' : '-'}}{{item.value}}{{item.unit}}</view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
+
+<view class="filter-mask" bindtap="onCloseAmountMore" animation="{{filterMaskAnim}}" style="display:{{filterMaskDisplay}};">
+  <view class="panel-wrap">
+    <view class="panel-title">所有奖励</view>
+    <view class="panel-list">
+      <view wx:for="{{pocketList}}" wx:key="unique" class="panel-item">
+        <view class="pi-type">{{item.pocketType}}奖励</view>
+        <view class="pi-amount">
+          <text class="pi-total">累计收益：{{item.totalAmount}}元</text>
+          <text>余额：{{item.leftAmount}}元</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

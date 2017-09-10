@@ -7,7 +7,7 @@
         <view wx:if="{{extInfo.productName}}" class="bd-title-main">{{extInfo.productName}}</view>
         <view class="bd-title-time">订单发布于{{baseInfo.publishTime}}</view>
       </view>
-      <view wx:if="{{baseInfo.relatedRole == 0 && baseInfo.status == '0'}}" class="remove-btn"></view>
+      <view wx:if="{{baseInfo.relatedRole == 0 && baseInfo.status == '0'}}" class="remove-btn" bindtap="onRemoveRequirement"></view>
       <view wx:if="{{baseInfo.status > '3'}}" class="bd-title-right">
         <view class="bd-title-status" style="color: {{baseInfo.statusColor}};">{{baseInfo.statusText}}</view>
       </view>
@@ -81,6 +81,15 @@
   </view>
 
   <view class="bd-info-wrap">
+    <view class="bd-info-item bd-info-item-more">
+      <view class="bd-item-left bd-item-left-more">供货商：</view>
+      <view class="bd-item-mid">{{extInfo.buyerName}}<block wx:if="{{extInfo.buyerCompany}}"><text>|</text>{{extInfo.buyerCompany}}</block></view>
+      <view class="bd-item-right bd-item-right-more bd-item-phone" bindtap="onTapContact" data-phone="{{extInfo.buyerContact}}"></view>
+    </view>
+    <view class="bd-info-line"></view>
+  </view>
+
+  <view class="bd-info-wrap">
     <view class="bd-info-item">
       要货时间：{{baseInfo.deliveryTime}}
     </view>
@@ -97,39 +106,8 @@
     <view class="bd-info-line"></view>
   </view>
 
-  <view wx:if="{{extInfo.expresserName}}" class="bd-info-wrap">
-    <view wx:if="{{extInfo.expressCompany}}" class="bd-info-item">
-      物流公司：{{extInfo.expressCompany}}
-    </view>
-    <view wx:if="{{extInfo.expressCode}}" class="bd-info-item">
-      物流单号：{{extInfo.expressCode}}
-    </view>
-    <view class="bd-info-line"></view>
-  </view>
-
-  <view class="bd-info-wrap">
-    <view class="bd-info-item bd-info-item-more">
-      <view class="bd-item-left bd-item-left-more">供应商：</view>
-      <view class="bd-item-mid">{{extInfo.skuerName}}<block wx:if="{{extInfo.skuerCompany}}"><text>|</text>{{extInfo.skuerCompany}}</block></view>
-      <view class="bd-item-right bd-item-right-more bd-item-phone" bindtap="onTapContact" data-phone="{{extInfo.skuerContact}}"></view>
-    </view>
-    <view class="bd-info-line"></view>
-  </view>
-
 </view>
 
 <view wx:if="{{baseInfo.status == 2}}" class="bd-tool-wrap">
-  <view class="bd-tool-match" bindtap="onOpenPanel">核销订单</view>
-</view>
-
-<view class="filter-mask" bindtap="onClosePanel" animation="{{filterMaskAnim}}" style="display:{{filterMaskDisplay}};"></view>
-<view class="filter-panel {{filterOpenCls}}" animation="{{filterPanelAnim}}">
-  <view class="qrcode-panel-wrap">
-    <view class="qp-tips">请消费者扫码确认后核销订单</view>
-    <view class="qrcode-wrap">
-      <image class="qrcode-pic" src="{{qrcode}}" mode="aspectFill"></image>
-    </view>
-    <button class="share-btn" open-type="share">分享核销码</button>
-
-  </view>
+  <view class="bd-tool-match" bindtap="onConfirmRequirement">确认核销</view>
 </view>

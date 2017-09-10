@@ -97,7 +97,7 @@
   background-color: #fff;
 }
 
-.bc-stat,
+.bc-last,
 .bc-help {
   border-bottom: 0;
 }

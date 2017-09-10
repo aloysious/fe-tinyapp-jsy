@@ -9,7 +9,7 @@
         {{title}} <text wx:if="{{amount}}" class="ri-info-sep">|</text> <text wx:if="{{amount}}" class="ri-info-amount">{{amount}}件</text>
       </view>
       <view class="ri-info-detail ri-info-date">
-         期望到货：{{deliveryTime}} | 批 ¥{{tradeTotalPrice}}
+         期望到货：{{deliveryTime}} | ¥{{saleTotalPrice}}
       </view>
       <view class="ri-info-detail ri-info-skuer">
         采购客户：{{buyerName}}<block wx:if="{{buyerContact}}"> | {{buyerContact}}</block>

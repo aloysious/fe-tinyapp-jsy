@@ -24,40 +24,8 @@ Page({
     filterMaskDisplay: 'none',
     publishTimeStart: '2017-01-01',
     publishTimeEnd: '',
-    typeList: [],
-    typeIndex: 0,
     isOnlyFollow: true,
-    list: [
-      /*
-      {
-        publishTime: '2017-05-31',        // 发布时间
-        productType: '纸品',               // 所属一级品类名称
-        status: 1,                        // 需求状态，0为待响应，1为需求确认中，2为订单确认中，3为订单进行中，4为物流配送中，5为结款中，6为已完结，7为已终止
-        skuerName: '张三',                 // sku经理名字
-        skuerCompany: 'xx公司',            // sku经理所属公司
-        skuerContact: 18697909687,        // sku经理联系方式
-        skuerAvatar: 'http://xxx.png',    // sku经理的头像，v1.1
-        title: '需求标题',                 // sku经理维护，没有就传空，v1.1
-        description: '需求描述',
-        amount: 1000,                     // 采购数量，sku经理维护，没有就传空，v1.1
-        isFollow: true,                   // 是否关注了需求
-        hasNewComment: true               // 是否有新的未读留言。判断逻辑：需要增加当前用户访问需求的最近时间记录表，取这个时间和需求最新的一次留言时间作比较，从而判断是否有新的未读留言。v1.1
-      }, {
-        publishTime: '2017-05-31',        // 发布时间
-        productType: '纸品',               // 所属一级品类名称
-        status: 1,                        // 需求状态，0为待响应，1为需求确认中，2为订单确认中，3为订单进行中，4为物流配送中，5为结款中，6为已完结，7为已终止
-        skuerName: '张三',                 // sku经理名字
-        skuerCompany: 'xx公司',            // sku经理所属公司
-        skuerContact: 18697909687,        // sku经理联系方式
-        skuerAvatar: 'http://xxx.png',    // sku经理的头像，v1.1
-        title: '需求标题',                 // sku经理维护，没有就传空，v1.1
-        description: '需求描述',
-        amount: 1000,                     // 采购数量，sku经理维护，没有就传空，v1.1
-        isFollow: true,                   // 是否关注了需求
-        hasNewComment: true               // 是否有新的未读留言。判断逻辑：需要增加当前用户访问需求的最近时间记录表，取这个时间和需求最新的一次留言时间作比较，从而判断是否有新的未读留言。v1.1
-      }
-      */
-    ],
+    list: [],
     pageNum: 1,
     pageSize: 20,
     hasMore: true
@@ -68,7 +36,6 @@ Page({
    */
   onLoad: function (options) {
     this.createAnim();
-    this.getCurrentDate();
     this.loading = false;
 
     // 处理兼容性
@@ -107,7 +74,6 @@ Page({
         publishTimeStart: data.publishTimeStart,
         publishTimeEnd: data.publishTimeEnd,
         isOnlyFollow: data.isOnlyFollow,
-        productTypeId: data.typeList[data.typeIndex] ? data.typeList[data.typeIndex].id : '',
         pageNum: data.pageNum,
         pageSize: data.pageSize
       },
@@ -131,10 +97,6 @@ Page({
         });
         wx.hideLoading();
         that.loading = false;
-
-        if (that.data.typeList.length == 0) {
-          that.getMyProductType();
-        }
       },
       loginCallback: function () {
         that.loading = false;
@@ -155,13 +117,12 @@ Page({
       list: [],
       pageNum: 1,
       pageSize: 20,
-      statusIndex: 0,
-      typeIndex: 0,
-      isOnlyFollow: true,
-      publishTimeStart: '2017-01-01',
+      //statusIndex: 0,
+      //typeIndex: 0,
+      //isOnlyFollow: true,
+      //publishTimeStart: '2017-01-01',
       hasMore: true
     });
-    this.getCurrentDate();
     this.getSkuerRequirementList();
   },
 
@@ -171,23 +132,6 @@ Page({
       statusIndex: index
     });
   },
-
-  onChangeType: function (e) {
-    var index = +e.detail.value;
-    this.setData({
-      typeIndex: index
-    });
-    if (!this.data.isFilterOpen) {
-      this.setData({
-        list: [],
-        pageNum: 1,
-        pageSize: 20,
-        hasMore: true
-      });
-      this.getSkuerRequirementList();
-    }
-  },
-
 
   createAnim: function () {
     var that = this;
@@ -222,33 +166,6 @@ Page({
     }, 400);
   },
 
-  getMyProductType: function () {
-    var that = this;
-    request({
-      url: APIS.GET_SKUER_PRODUCT_TYPE_LIST,
-      data: {
-        sid: wx.getStorageSync('sid')
-      },
-      method: 'POST',
-      realSuccess: function (data) {
-        var list = data.relatedProductType;
-        list.unshift({
-          id: '',
-          name: '全部'
-        });
-        that.setData({
-          typeList: list
-        });
-      },
-      realFail: function (msg) {
-        //wx.hideLoading();
-        wx.showToast({
-          title: msg
-        });
-      }
-    }, true);
-  },
-
   onCloseFilterPanel: function () {
     var that = this;
     this.filterMaskAnim.opacity(0).step();
@@ -269,13 +186,6 @@ Page({
     }, 400);
   },
 
-  getCurrentDate: function () {
-    var d = util.formatDate(new Date());
-    this.setData({
-      publishTimeEnd: d
-    });
-  },
-
   onChangeStartTime: function (e) {
     var d = e.detail.value;
     this.setData({
@@ -289,14 +199,6 @@ Page({
       publishTimeEnd: d
     });
   },
-
-  /*
-  onToggleFilterFollow: function () {
-    this.setData({
-      isOnlyFollow: !this.data.isOnlyFollow
-    });
-  },
-  */
 
   onConfirmFilter: function () {
     this.setData({

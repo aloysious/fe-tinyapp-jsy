@@ -105,5 +105,11 @@ Page({
     wx.navigateTo({
       url: '../qa/qa',
     })
+  },
+
+  onToPocket: function () {
+    wx.navigateTo({
+      url: '../pocket/pocket',
+    })
   }
 })

@@ -25,37 +25,7 @@ Page({
     deliveryTimeStart: '2017-01-01',
     deliveryTimeEnd: '2027-12-31',
     isOnlyFollow: false,
-    list: [
-      /*
-      {
-        deliveryTime: '2017-05-31',        // 发布时间
-        productType: '纸品',               // 所属一级品类名称
-        status: 1,                        // 需求状态，0为待响应，1为需求确认中，2为订单确认中，3为订单进行中，4为物流配送中，5为结款中，6为已完结，7为已终止
-        skuerName: '张三',                 // sku经理名字
-        skuerCompany: 'xx公司',            // sku经理所属公司
-        skuerContact: 18697909687,        // sku经理联系方式
-        skuerAvatar: 'http://xxx.png',    // sku经理的头像，v1.1
-        title: '需求标题',                 // sku经理维护，没有就传空，v1.1
-        description: '需求描述',
-        amount: 1000,                     // 采购数量，sku经理维护，没有就传空，v1.1
-        isFollow: true,                   // 是否关注了需求
-        hasNewComment: true               // 是否有新的未读留言。判断逻辑：需要增加当前用户访问需求的最近时间记录表，取这个时间和需求最新的一次留言时间作比较，从而判断是否有新的未读留言。v1.1
-      }, {
-        deliveryTime: '2017-05-31',        // 发布时间
-        productType: '纸品',               // 所属一级品类名称
-        status: 1,                        // 需求状态，0为待响应，1为需求确认中，2为订单确认中，3为订单进行中，4为物流配送中，5为结款中，6为已完结，7为已终止
-        skuerName: '张三',                 // sku经理名字
-        skuerCompany: 'xx公司',            // sku经理所属公司
-        skuerContact: 18697909687,        // sku经理联系方式
-        skuerAvatar: 'http://xxx.png',    // sku经理的头像，v1.1
-        title: '需求标题',                 // sku经理维护，没有就传空，v1.1
-        description: '需求描述',
-        amount: 1000,                     // 采购数量，sku经理维护，没有就传空，v1.1
-        isFollow: true,                   // 是否关注了需求
-        hasNewComment: true               // 是否有新的未读留言。判断逻辑：需要增加当前用户访问需求的最近时间记录表，取这个时间和需求最新的一次留言时间作比较，从而判断是否有新的未读留言。v1.1
-      }
-      */
-    ],
+    list: [],
     pageNum: 1,
     pageSize: 20,
     hasMore: true
@@ -148,13 +118,12 @@ Page({
       list: [],
       pageNum: 1,
       pageSize: 20,
-      statusIndex: 0,
-      typeIndex: 0,
-      isOnlyFollow: false,
-      deliveryTimeStart: '2017-01-01',
+      //statusIndex: 0,
+      //typeIndex: 0,
+      //isOnlyFollow: false,
+      //deliveryTimeStart: '2017-01-01',
       hasMore: true
     });
-    //this.getCurrentDate();
     this.getBuyerRequirementList();
   },
 
@@ -163,22 +132,6 @@ Page({
     this.setData({
       statusIndex: index
     });
-  },
-
-  onChangeType: function (e) {
-    var index = +e.detail.value;
-    this.setData({
-      typeIndex: index
-    });
-    if (!this.data.isFilterOpen) {
-      this.setData({
-        list: [],
-        pageNum: 1,
-        pageSize: 20,
-        hasMore: true
-      });
-      this.getBuyerRequirementList();
-    }
   },
 
   createAnim: function () {
@@ -232,13 +185,6 @@ Page({
         filterMoreToggle: 'onOpenFilterMore'
       });
     }, 400);
-  },
-
-  getCurrentDate: function() {
-    var d = util.formatDate(new Date());
-    this.setData({
-      deliveryTimeEnd: d
-    });
   },
 
   onChangeStartTime: function(e) {

@@ -16,19 +16,13 @@ Page({
     phone: '',
     code: '',
     codeText: '获取验证码',
-    isCodeDisabled: false,
-    filterMaskAnim: {},
-    filterPanelAnim: {},
-    filterMaskDisplay: 'none',
-    allProductType: [],
-    selectedProductType: []
+    isCodeDisabled: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.createAnim();
     user.login(this.getMyInfo, this, true);
   },
 
@@ -45,8 +39,7 @@ Page({
           that.setData({
             name: data.name,
             company: data.company,
-            phone: data.phone,
-            selectedProductType: data.relatedProductType
+            phone: data.phone
           });
         }
       },
@@ -138,17 +131,10 @@ Page({
     var company = util.trim(this.data.company);
     var phone = util.trim(this.data.phone);
     var code = util.trim(this.data.code);
-    var selectedProductType = this.data.selectedProductType;
 
     if (name == '') {
       wx.showToast({
         title: '姓名不能为空'
-      });
-      return;
-    }
-    if (selectedProductType.length == 0) {
-      wx.showToast({
-        title: '关注品类不能为空'
       });
       return;
     }
@@ -182,8 +168,7 @@ Page({
         name: name,
         phone: phone,
         verificationCode: code,
-        company: company,
-        relatedProductTypeId: this.getSelectedIds()
+        company: company
       },
       method: 'POST',
       realSuccess: function (data) {
@@ -198,124 +183,5 @@ Page({
         });
       }
     }, true);
-  },
-
-  createAnim: function () {
-    var that = this;
-    this.filterMaskAnim = wx.createAnimation({
-      duration: 400,
-      timingFunction: 'ease'
-    });
-    this.filterPanelAnim = wx.createAnimation({
-      duration: 400,
-      timingFunction: 'ease'
-    })
-  },
-
-  onOpenProductType: function() {
-    this.setData({
-      filterMaskDisplay: 'block'
-    });
-    this.filterMaskAnim.opacity(0.5).step();
-    this.filterPanelAnim.right(0).step();
-    this.setData({
-      filterMaskAnim: this.filterMaskAnim.export(),
-      filterPanelAnim: this.filterPanelAnim.export()
-    });
-
-    if (this.data.allProductType.length == 0) {
-      this.getAllProductType();
-    }
-  },
-
-  onCloseFilterPanel: function() {
-    var that = this;
-    this.filterMaskAnim.opacity(0).step();
-    this.filterPanelAnim.right('-80%').step();
-    this.setData({
-      filterMaskAnim: this.filterMaskAnim.export(),
-      filterPanelAnim: this.filterPanelAnim.export()
-    });
-    setTimeout(function () {
-      that.setData({
-        filterMaskDisplay: 'none'
-      });
-    }, 400);
-  },
-
-  getAllProductType: function() {
-    var that = this;
-    request({
-      url: APIS.GET_ALL_PRODUCT_TYPE_LIST,
-      method: 'POST',
-      realSuccess: function(data) {
-        that.renderAllTypeList(data.list);
-      },
-      realFail: function (msg) {
-        //wx.hideLoading();
-        wx.showToast({
-          title: msg
-        });
-      }
-    }, false);
-  },
-
-  renderAllTypeList: function(list) {
-    var selectedIds = this.getSelectedIds();
-    list = list.map(function(item) {
-      if (util.inArray(item.id, selectedIds)) {
-        item.isSelected = true;
-      } else {
-        item.isSelected = false;
-      }
-      return item;
-    });
-    this.setData({
-      allProductType: list
-    });
-  },
-
-  getSelectedIds: function() {
-    var selectedIds = [];
-    this.data.selectedProductType.forEach(function(v, i) {
-      selectedIds.push(v.id);
-    });
-    return selectedIds;
-  },
-
-  onSelectType: function(e) {
-    var id = e.target.dataset.id;
-    var selectedList = [];
-    var list = this.data.allProductType.map(function(item) {
-      if (item.id == id) {
-        item.isSelected = true;
-      }
-      if (item.isSelected) {
-        selectedList.push(item);
-      }
-      return item;
-    });
-    this.setData({
-      allProductType: list,
-      selectedProductType: selectedList
-    });
-  },
-
-  onUnselectType: function(e) {
-    var id = e.target.dataset.id;
-    var selectedList = [];
-    var list = this.data.allProductType.map(function (item) {
-      if (item.id == id) {
-        item.isSelected = false;
-      }
-      if (item.isSelected) {
-        selectedList.push(item);
-      }
-      return item;
-    });
-    this.setData({
-      allProductType: list,
-      selectedProductType: selectedList
-    });
   }
 })

@@ -52,7 +52,7 @@
   <view class="fp-item fp-type">
     <view class="fp-item-left fp-type-label">
       <view class="fp-item-icon fp-type-icon"></view>
-      <view class="fp-item-header">需求状态</view>
+      <view class="fp-item-header">订单状态</view>
     </view>
     <view class="fp-item-right">
       <picker class="fp-picker fp-type-picker" range="{{statusList}}" value="{{statusIndex}}" range-key="statusText" bindchange="onChangeStatus">

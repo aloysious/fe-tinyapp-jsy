@@ -9,6 +9,9 @@
   /*padding-top: 44rpx;
   box-sizing: border-box;*/
   background-color: #DF443D;
+  background-image: url(http://jsy-1253427581.cossh.myqcloud.com/pic_logo1_bg.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 .swiper {

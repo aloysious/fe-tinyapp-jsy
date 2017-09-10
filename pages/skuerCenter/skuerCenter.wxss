@@ -97,8 +97,8 @@
   background-color: #fff;
 }
 
-.bc-stat,
-.bc-help {
+.bc-help,
+.bc-last {
   border-bottom: 0;
 }
 

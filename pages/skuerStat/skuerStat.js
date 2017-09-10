@@ -6,16 +6,6 @@ var { request } = require('../../libs/request');
 
 Page({
   data: {
-    filterList: [
-      {
-        id: 0,
-        name: '按一级品类'
-      }, {
-        id: 1,
-        name: '按需求状态'
-      }
-    ],
-    filterIndex: 0,
     totalCount: 0,
     averageTime: 0,
     partnerList: [],
@@ -31,17 +21,11 @@ Page({
       console.error('getSystemInfoSync failed!');
     }
 
-    this.getRequirementCountData();
-    this.getResponseTimeData();
-    this.getTopPartner();
-  },
-
-  onChangeFilter: function (e) {
-    var index = +e.detail.value;
-    this.setData({
-      filterIndex: index
-    });
-    this.getRequirementCountData();
+    user.login(function () {
+      this.getRequirementCountData();
+      this.getResponseTimeData();
+      this.getTopPartner();
+    }, this, true);
   },
 
   getRequirementCountData: function () {
@@ -49,23 +33,24 @@ Page({
     request({
       url: APIS.GET_REQUIREMENT_COUNT_DATA,
       data: {
-        sid: wx.getStorageSync('sid'),
-        type: this.data.filterIndex
+        sid: wx.getStorageSync('sid')
       },
       method: 'POST',
       realSuccess: function (data) {
-        that.setData({
-          totalCount: data.totalCount
-        });
-
         var dl = [];
         data.dataList.forEach(function (v, i) {
           v.format = function (d) {
             return v.data + '次，' + 100 * d + '%';
           };
-          if (v.data != 0) {
+          if (i == 0) {
+            data.totalCount -= v.data;
+          }
+          if (v.data != 0 && i != 0) {
             dl.push(v);
           }
+        });
+        that.setData({
+          totalCount: data.totalCount
         });
         that.renderPie('requirementCanvas', dl);
         wx.hideLoading();

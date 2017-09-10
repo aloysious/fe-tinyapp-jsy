@@ -250,7 +250,7 @@ Page({
       data: {
         sid: wx.getStorageSync('sid'),
         rid: data.rid,
-        content: '需求状态修改为“' + data.nextStatusText + '”。',
+        content: '订单状态修改为“' + data.nextStatusText + '”。',
         pictures: []
       },
       method: 'POST',

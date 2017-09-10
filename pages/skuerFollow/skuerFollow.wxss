@@ -204,7 +204,7 @@
   height: 100rpx;
   line-height: 100rpx;
   font-size: 28rpx;
-  color: #4285F4;
+  color: #DF443D;
   text-align: center;
   background-color: #fff;
   font-weight: 500;

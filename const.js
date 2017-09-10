@@ -65,7 +65,8 @@ var dayFormatList = [
   { chi: '星期六', eng: 'Saturday', simpleEng: 'Sat' }
 ];
 
-var reqHost = 'https://tiny.bys2b.com/2';
+//var reqHost = 'https://jsy.iyiplus.com';
+var reqHost = 'https://jsy.iyiplus.com/dev';
 
 var APIS = {
   GET_EVENT_NOU:						 reqHost +'/getAnnouncementList',//公告数据
@@ -271,7 +272,19 @@ var APIS = {
   DELIVERY_REQUIREMENT: reqHost + '/deliveryRequirement',
 
   // 配送人员的订单列表
-  GET_EXPRESSER_REQUIREMENT_LIST: reqHost + '/getExpresserRequirementList'
+  GET_EXPRESSER_REQUIREMENT_LIST: reqHost + '/getExpresserRequirementList',
+
+  // 获取需求的核销码
+  GET_REQUIREMENT_QRCODE: reqHost + '/getRequirementQrCode',
+
+  // 消费者核销订单
+  RECIEVE_REQUIREMENT: reqHost + '/recieveRequirement',
+
+  // 获取账户详情列表
+  GET_MY_POCKET_LIST: reqHost + '/getMyPocketList',
+
+  // 按月获取用户奖励收支明细
+  GET_MY_PROFIT_LIST_BY_MONTH: reqHost + '/getMyProfitListByMonth'
 
 	
 };

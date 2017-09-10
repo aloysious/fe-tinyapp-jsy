@@ -446,6 +446,18 @@
   display: none;
 }
 
+.fobidden-mask {
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  display: none;
+}
+
 .filter-panel {
   width: 80%;
   height: 100%;
@@ -541,4 +553,31 @@
 
 .pli-cart-selected {
    background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/ic_cart_pressed.png);
+}
+
+.list-empty-wrap {
+  margin: auto;
+  margin-top: 187rpx;
+  width: 80%;
+  background-color: #F1F2F4;
+  padding: 50rpx 20rpx;
+  box-sizing: border-box;
+  border-radius: 15rpx;
+}
+
+.list-empty-icon {
+  width: 204rpx;
+  height: 204rpx;
+  margin: auto;
+  background-image: url(http://bys2b-1253427581.cossh.myqcloud.com/pic_needs_clear.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin-bottom: 22rpx;
+}
+
+.list-empty-text {
+  font-size: 28rpx;
+  color: #9b9b9b;
+  line-height: 48rpx;
+  text-align: center;
 }

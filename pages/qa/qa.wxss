@@ -9,7 +9,7 @@
 .qa-title {
   height: 100rpx;
   line-height: 100rpx;
-  color: #4285f4;
+  color: #DF443D;
   font-size: 28rpx;
   border-bottom: 1rpx solid #e0e0e0;
   padding-right: 30rpx;
